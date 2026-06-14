@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 1 · Five Scales, One Fingering</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #fffef9;
+    --accent: #8b2500;
+    --rule: #d8d2c4;
+    --soft: #6b6657;
+    --good: #2e6b30;
+    --bad: #a33327;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Georgia, 'Palatino Linotype', serif;
+    background: var(--paper);
+    color: var(--ink);
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+    line-height: 1.6;
+  }
+  h1 { font-size: 1.8rem; font-weight: normal; margin: 0 0 .2rem; }
+  h2 { font-size: 1.2rem; color: var(--accent); font-weight: normal; margin: 2.4rem 0 .6rem; border-bottom: 1px solid var(--rule); padding-bottom: .25rem; }
+  .kicker { text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; color: var(--soft); }
+  .lede { font-style: italic; color: var(--soft); margin-top: .3rem; }
+  .fing { font-family: Consolas, 'Courier New', monospace; letter-spacing: .12em; white-space: nowrap; }
+  .fing b { color: var(--accent); }
+  .win {
+    background: #eef3e6; border-left: 3px solid var(--good);
+    padding: .8rem 1rem; margin: 1.2rem 0;
+  }
+  .note {
+    background: #f5f1e4; border-left: 3px solid var(--accent);
+    padding: .8rem 1rem; margin: 1.2rem 0; font-size: .95rem;
+  }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size: .95rem; }
+  th { text-align: left; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--soft); font-weight: normal; padding: .3rem .6rem; border-bottom: 1px solid var(--ink); }
+  td { padding: .4rem .6rem; border-bottom: 1px solid var(--rule); }
+  a { color: var(--accent); }
+  ol li, ul li { margin-bottom: .4rem; }
+
+  /* Trainer */
+  .trainer { border: 1px solid var(--rule); padding: 1rem 1.2rem 1.4rem; margin: 1rem 0; background: #fbf9f2; }
+  .trainer-controls { margin-bottom: .8rem; }
+  .trainer select, .trainer button.reset {
+    font-family: inherit; font-size: .95rem; padding: .25rem .5rem;
+    border: 1px solid var(--soft); background: var(--paper); color: var(--ink);
+  }
+  .note-strip { display: flex; gap: .4rem; flex-wrap: wrap; margin: .8rem 0; }
+  .note-cell {
+    width: 3.2rem; text-align: center; padding: .45rem 0;
+    border: 1px solid var(--rule); background: var(--paper); font-size: 1rem;
+  }
+  .note-cell.current { border-color: var(--accent); background: #fdeede; font-weight: bold; }
+  .note-cell.done { background: #eef3e6; border-color: var(--good); color: var(--good); }
+  .note-cell .got { display: block; font-size: .75rem; font-family: Consolas, monospace; min-height: 1em; }
+  .finger-pad { display: flex; gap: .5rem; margin-top: .6rem; }
+  .finger-pad button {
+    font-family: Consolas, monospace; font-size: 1.3rem; width: 3rem; height: 3rem;
+    border: 1px solid var(--soft); background: var(--paper); cursor: pointer;
+  }
+  .finger-pad button:hover { background: #f1ecdd; }
+  .finger-pad button.flash-bad { background: #f6ddd8; border-color: var(--bad); }
+  .trainer-msg { min-height: 1.4em; margin-top: .6rem; font-size: .95rem; }
+  .trainer-msg.good { color: var(--good); }
+  .trainer-msg.bad { color: var(--bad); }
+
+  /* Quiz */
+  .q { border: 1px solid var(--rule); padding: .9rem 1.1rem; margin: .8rem 0; background: #fbf9f2; }
+  .q p { margin: 0 0 .6rem; }
+  .q .opts { display: flex; gap: .5rem; flex-wrap: wrap; }
+  .q .opts button {
+    font-family: inherit; font-size: .95rem; padding: .4rem .9rem;
+    border: 1px solid var(--soft); background: var(--paper); cursor: pointer;
+  }
+  .q .opts button:hover { background: #f1ecdd; }
+  .q .opts button.right { background: #eef3e6; border-color: var(--good); color: var(--good); font-weight: bold; }
+  .q .opts button.wrong { background: #f6ddd8; border-color: var(--bad); color: var(--bad); }
+  .q .explain { font-size: .88rem; color: var(--soft); margin-top: .6rem; display: none; }
+  .q.answered .explain { display: block; }
+
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: .9rem; color: var(--soft); }
+  @media print { .trainer, .q .opts { display: none; } .q.answered .explain { display: block; } body { padding: 0; } }
+</style>
+</head>
+<body>
+
+<p class="kicker">Lesson 1 · Piano Workspace · ~15 minutes</p>
+<h1>Five Scales, One Fingering</h1>
+<p class="lede">C, G, D, A, and E major all use the exact same fingers. Learn one pattern, get five scales — in the five keys your pop and film repertoire lives in.</p>
+
+<h2>Why this is lesson one</h2>
+<p>Your mission is to learn pieces faster. The single biggest reason scale work serves that mission: a scale is the <em>map of a key</em> under your fingers. When your hands already know where the notes of D major sit, a run in a film arrangement stops being eight decisions and becomes one. C, G, D, A, and E are guitar-friendly keys, which makes them disproportionately common in pop and rock — so this one pattern pays rent immediately.</p>
+
+<h2>The pattern</h2>
+<table>
+  <tr><th></th><th>Fingering (ascending)</th><th>How it feels</th></tr>
+  <tr><td><strong>Right hand</strong></td><td class="fing">1 2 3 <b>1</b> 2 3 4 5</td><td>Three fingers, thumb tucks under, four fingers to the top.</td></tr>
+  <tr><td><strong>Left hand</strong></td><td class="fing">5 4 3 2 <b>1</b> 3 2 1</td><td>Four fingers, then finger 3 crosses over the thumb.</td></tr>
+</table>
+<p>Descending is the same fingers in reverse. Three things to internalize:</p>
+<ul>
+  <li><strong>The RH thumb tucks under immediately after finger 3.</strong> Start the tuck early — the thumb travels under the palm while 2 and 3 are still playing. (Verified fingering: <a href="https://learnmusictheory.net/PDFs/pdffiles/01-02-07-ScalesforPiano.pdf">LearnMusicTheory.net chart</a>, confirmed by <a href="https://www.pianoscales.org/major.html">PianoScales.org</a>.)</li>
+  <li><strong>The hands mirror each other.</strong> LH descending feels like RH ascending. Don't fight it — use it.</li>
+  <li><strong>Hands together, the third fingers always land at the same moment.</strong> In all five of these scales, both 3s strike together (twice per octave). That's your built-in checkpoint: if the 3s don't meet, something slipped.</li>
+</ul>
+
+<div class="win">
+  <strong>This week's win:</strong> C major and G major, hands together, one octave up and down, from memory, at a slow steady pulse (♩ = 60). D, A, and E follow with the identical fingering — that's the point.
+</div>
+
+<h2>Try it now — fingering trainer</h2>
+<p>Pick a scale and hand, then tap the finger numbers in order (keyboard keys 1–5 work too). Do each scale until you get one clean error-free pass <em>from memory</em> — recalling before checking is what builds retention, not re-reading the chart.</p>
+
+<div class="trainer" id="trainer">
+  <div class="trainer-controls">
+    <label>Scale:
+      <select id="scaleSel">
+        <option value="C">C major</option>
+        <option value="G">G major</option>
+        <option value="D">D major</option>
+        <option value="A">A major</option>
+        <option value="E">E major</option>
+      </select>
+    </label>
+    &nbsp;
+    <label>Hand:
+      <select id="handSel">
+        <option value="RH">Right hand</option>
+        <option value="LH">Left hand</option>
+      </select>
+    </label>
+    &nbsp;
+    <button class="reset" id="resetBtn">Restart</button>
+  </div>
+  <div class="note-strip" id="noteStrip"></div>
+  <div class="finger-pad" id="fingerPad">
+    <button data-f="1">1</button><button data-f="2">2</button><button data-f="3">3</button><button data-f="4">4</button><button data-f="5">5</button>
+  </div>
+  <div class="trainer-msg" id="trainerMsg">Which finger plays the first note?</div>
+</div>
+
+<h2>Check yourself</h2>
+
+<div class="q" data-answer="0">
+  <p>1. Right hand ascending, G major: which finger plays C (the 4th note)?</p>
+  <div class="opts"><button>1</button><button>2</button><button>3</button><button>4</button></div>
+  <p class="explain">The thumb. After 1-2-3 on G-A-B, the thumb tucks under to play C: <span class="fing">1 2 3 <b>1</b> 2 3 4 5</span>.</p>
+</div>
+
+<div class="q" data-answer="2">
+  <p>2. Right hand ascending, D major: which finger plays F♯?</p>
+  <div class="opts"><button>1</button><button>2</button><button>3</button><button>4</button></div>
+  <p class="explain">F♯ is the 3rd note of D major (D-E-F♯), so finger 3 — right before the thumb tucks under to G.</p>
+</div>
+
+<div class="q" data-answer="1">
+  <p>3. Left hand ascending, A major: which finger plays D (the 4th note)?</p>
+  <div class="opts"><button>1</button><button>2</button><button>3</button><button>4</button></div>
+  <p class="explain">LH ascending is <span class="fing">5 4 3 2 1 3 2 1</span>: A(5) B(4) C♯(3) D(2).</p>
+</div>
+
+<div class="q" data-answer="1">
+  <p>4. Ascending in the right hand, the thumb tucks under immediately after which finger?</p>
+  <div class="opts"><button>Finger 2</button><button>Finger 3</button><button>Finger 4</button><button>Finger 5</button></div>
+  <p class="explain">After finger 3 — the signature move of this fingering family. (At the very top the run just ends 4–5; no tuck.)</p>
+</div>
+
+<div class="q" data-answer="3">
+  <p>5. Which left-hand finger starts every scale in this family?</p>
+  <div class="opts"><button>2</button><button>3</button><button>4</button><button>5</button></div>
+  <p class="explain">The pinky (5). LH starts at the bottom of its hand position: <span class="fing">5 4 3 2 1 3 2 1</span>.</p>
+</div>
+
+<h2>This week at the piano — 8 minutes a day</h2>
+<p>Slot this at the start of your normal 30–45 minute session. The structure matters more than the minutes — it uses <em>retrieval practice</em> (recall before looking) and <em>spacing</em> (a little daily beats a lot once), the two best-evidenced tools for making motor learning stick (<a href="https://bulletproofmusician.com/why-the-progress-in-the-practice-room-seems-to-disappear-overnight/">Carter, Bulletproof Musician</a>; <a href="https://www.mollygebrian.com/music-and-the-brain">Gebrian</a>).</p>
+<ol>
+  <li><strong>Recall first (1 min).</strong> Before touching the keys, say today's fingering out loud from memory. Only check the <a href="../reference/scale-fingerings.html">reference chart</a> if you blank.</li>
+  <li><strong>Two scales per day, in rotation (6 min).</strong> Day 1: C + G. Day 2: D + A. Day 3: E + C. Keep rotating. For each: right hand alone slowly until one clean pass, left hand alone the same, then — only if both hands felt easy — try hands together at half that speed, listening for the third fingers landing together.</li>
+  <li><strong>One honest rep (1 min).</strong> Finish with a single slow, deliberately perfect pass of your best scale of the day. End on accuracy, not speed. Speed comes free later; wrong notes practiced today are wrong notes you'll own forever.</li>
+</ol>
+<div class="note">
+  <strong>Tempo rule:</strong> never faster than you can play with zero errors. The pianists who learned fastest in the UT Austin practice study weren't the ones who played the most — they were the ones who treated every error as a precise location to fix slowly, immediately (<a href="https://bulletproofmusician.com/8-things-top-practicers-do-differently/">Kageyama, "8 Things Top Practicers Do Differently"</a>). That principle is the core of this whole curriculum, and we'll apply it to your pieces next.
+</div>
+
+<h2>Go deeper</h2>
+<p><strong>Primary source for this lesson:</strong> <a href="https://bulletproofmusician.com/8-things-top-practicers-do-differently/">"8 Things Top Practicers Do Differently" — Noa Kageyama, Bulletproof Musician</a> (~8 min read). It reframes what "good practice" means and sets up everything we'll do with your repertoire.</p>
+
+<footer>
+  <p><strong>Linked:</strong> <a href="../reference/scale-fingerings.html">Reference — Major Scale Fingerings, all 12 keys</a></p>
+  <p><strong>Questions?</strong> Your teacher (the agent) is one message away. Ask about anything unclear — thumb-tuck mechanics, what tempo to pick, why the 3rds line up — and report back after a few days of the routine so the next lesson can build on how it actually went.</p>
+</footer>
+
+<script>
+(function () {
+  var SCALES = {
+    C: ['C','D','E','F','G','A','B','C'],
+    G: ['G','A','B','C','D','E','F♯','G'],
+    D: ['D','E','F♯','G','A','B','C♯','D'],
+    A: ['A','B','C♯','D','E','F♯','G♯','A'],
+    E: ['E','F♯','G♯','A','B','C♯','D♯','E']
+  };
+  var FINGERS = { RH: [1,2,3,1,2,3,4,5], LH: [5,4,3,2,1,3,2,1] };
+
+  var strip = document.getElementById('noteStrip');
+  var msg = document.getElementById('trainerMsg');
+  var scaleSel = document.getElementById('scaleSel');
+  var handSel = document.getElementById('handSel');
+  var pos = 0, errors = 0;
+
+  function build() {
+    pos = 0; errors = 0;
+    strip.innerHTML = '';
+    var notes = SCALES[scaleSel.value];
+    for (var i = 0; i < notes.length; i++) {
+      var cell = document.createElement('div');
+      cell.className = 'note-cell' + (i === 0 ? ' current' : '');
+      cell.innerHTML = notes[i] + '<span class="got"></span>';
+      strip.appendChild(cell);
+    }
+    msg.className = 'trainer-msg';
+    msg.textContent = 'Which finger plays the first note?';
+  }
+
+  function press(f) {
+    var fingers = FINGERS[handSel.value];
+    if (pos >= fingers.length) return;
+    var cells = strip.children;
+    if (f === fingers[pos]) {
+      cells[pos].classList.remove('current');
+      cells[pos].classList.add('done');
+      cells[pos].querySelector('.got').textContent = f;
+      pos++;
+      if (pos === fingers.length) {
+        msg.className = 'trainer-msg ' + (errors === 0 ? 'good' : '');
+        msg.textContent = errors === 0
+          ? 'Clean pass! Now play it on the real keyboard, then switch hands.'
+          : 'Done, with ' + errors + ' slip' + (errors === 1 ? '' : 's') + '. Restart and go for a clean pass from memory.';
+      } else {
+        cells[pos].classList.add('current');
+        msg.className = 'trainer-msg good';
+        msg.textContent = 'Right.';
+      }
+    } else {
+      errors++;
+      msg.className = 'trainer-msg bad';
+      msg.textContent = 'Not ' + f + '. Think about where you are in the pattern.';
+    }
+  }
+
+  document.getElementById('fingerPad').addEventListener('click', function (e) {
+    if (e.target.dataset.f) press(parseInt(e.target.dataset.f, 10));
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key >= '1' && e.key <= '5' && !e.target.matches('select')) press(parseInt(e.key, 10));
+  });
+  scaleSel.addEventListener('change', build);
+  handSel.addEventListener('change', build);
+  document.getElementById('resetBtn').addEventListener('click', build);
+  build();
+
+  // Quiz
+  document.querySelectorAll('.q').forEach(function (q) {
+    var answer = parseInt(q.dataset.answer, 10);
+    q.querySelectorAll('.opts button').forEach(function (btn, i) {
+      btn.addEventListener('click', function () {
+        if (q.classList.contains('answered')) return;
+        q.classList.add('answered');
+        if (i === answer) {
+          btn.classList.add('right');
+        } else {
+          btn.classList.add('wrong');
+          q.querySelectorAll('.opts button')[answer].classList.add('right');
+        }
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Piano Practice</title>
+
+<!-- PWA -->
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#8b2500">
+
+<!-- iOS / iPad add-to-home-screen -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Piano">
+<link rel="apple-touch-icon" href="./icons/icon-180.png">
+
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #fffef9;
+    --accent: #8b2500;
+    --rule: #d8d2c4;
+    --soft: #6b6657;
+    --good: #2e6b30;
+    --card: #fbf9f2;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: Georgia, 'Palatino Linotype', serif;
+    background: var(--paper);
+    color: var(--ink);
+    margin: 0;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) 4rem env(safe-area-inset-left);
+    line-height: 1.55;
+  }
+  .wrap { max-width: 48rem; margin: 0 auto; padding: 2rem 1.25rem 0; }
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 1.1rem; margin-bottom: 1.4rem; }
+  .kicker { text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; color: var(--soft); }
+  h1 { font-size: 2rem; font-weight: normal; margin: .2rem 0 .1rem; }
+  .sub { font-style: italic; color: var(--soft); margin: 0; }
+  h2 { font-size: 1.05rem; color: var(--accent); font-weight: normal; text-transform: uppercase; letter-spacing: .08em; margin: 2.2rem 0 .4rem; }
+
+  .grid { display: grid; gap: .8rem; }
+  a.card {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 8px;
+    padding: 1rem 1.15rem; transition: border-color .15s, transform .05s;
+  }
+  a.card:active { transform: scale(.99); }
+  a.card:hover { border-color: var(--accent); }
+  .card .t { font-size: 1.2rem; font-weight: bold; display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; }
+  .card .t .num { font-size: .72rem; color: var(--soft); font-weight: normal; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+  .card .d { color: var(--soft); font-size: .95rem; margin-top: .25rem; }
+  .card .meta { font-size: .78rem; color: var(--accent); margin-top: .5rem; letter-spacing: .04em; }
+
+  .empty { background: var(--card); border: 1px dashed var(--rule); border-radius: 8px; padding: 1.1rem 1.2rem; color: var(--soft); font-size: .95rem; }
+  .empty code { background: #efece2; padding: .05rem .35rem; border-radius: 3px; font-size: .85em; }
+
+  .toolbar { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .4rem; }
+  .toolbar button {
+    font-family: inherit; font-size: .9rem; padding: .55rem .9rem;
+    border: 1px solid var(--soft); background: var(--paper); color: var(--ink);
+    border-radius: 6px; cursor: pointer;
+  }
+  .toolbar button[aria-pressed="true"] { background: #eef3e6; border-color: var(--good); color: var(--good); }
+
+  details.help { margin-top: 1rem; background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: .3rem .2rem; }
+  details.help summary { cursor: pointer; padding: .7rem 1rem; font-size: .95rem; color: var(--accent); list-style: none; }
+  details.help summary::-webkit-details-marker { display: none; }
+  details.help summary::before { content: "＋ "; }
+  details.help[open] summary::before { content: "－ "; }
+  details.help .body { padding: 0 1.1rem 1rem; font-size: .93rem; color: var(--soft); }
+  details.help ol { padding-left: 1.2rem; }
+  details.help li { margin-bottom: .35rem; }
+
+  footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: .85rem; color: var(--soft); }
+  a.inline { color: var(--accent); }
+  .status { font-size: .78rem; color: var(--soft); margin-top: .3rem; min-height: 1.1em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="kicker">Practice Workspace</p>
+    <h1>Piano Practice</h1>
+    <p class="sub">Scales, exercises, and practice material — built for the music stand.</p>
+    <div class="toolbar">
+      <button id="wakeBtn" aria-pressed="false">☀ Keep screen awake</button>
+    </div>
+    <p class="status" id="status"></p>
+  </header>
+
+  <h2>Lessons</h2>
+  <div class="grid">
+    <a class="card" href="./lessons/0002-twelve-scales-three-shapes.html">
+      <div class="t"><span>Twelve Scales, Three Shapes</span><span class="num">Lesson 2</span></div>
+      <div class="d">All 12 major scales as 3 fingering shapes, with drill focus on the black-key keys. Includes the all-12 fingering trainer.</div>
+      <div class="meta">~20 min · interactive trainer</div>
+    </a>
+    <a class="card" href="./lessons/0001-five-scales-one-fingering.html">
+      <div class="t"><span>Five Scales, One Fingering</span><span class="num">Lesson 1</span></div>
+      <div class="d">C, G, D, A, E major share one fingering — the white-key home shape. Fingering trainer + self-check quiz.</div>
+      <div class="meta">~15 min · interactive trainer</div>
+    </a>
+  </div>
+
+  <h2>Tools</h2>
+  <div class="grid">
+    <a class="card" href="./notation-studio.html">
+      <div class="t"><span>Notation Studio</span><span class="num">Play &amp; view</span></div>
+      <div class="d">Your scales rendered as real notation with lesson fingerings above each note — tap play to hear them. The home of generated exercises.</div>
+      <div class="meta">Interactive · audio</div>
+    </a>
+  </div>
+
+  <h2>Reference</h2>
+  <div class="grid">
+    <a class="card" href="./reference/scale-fingerings.html">
+      <div class="t"><span>Major Scale Fingerings</span><span class="num">All 12 keys</span></div>
+      <div class="d">The printable chart: every major scale grouped into the three fingering families. Keep it on the stand.</div>
+      <div class="meta">Quick reference</div>
+    </a>
+  </div>
+
+  <h2>Practice Material</h2>
+  <div class="grid" id="materialGrid"></div>
+
+  <details class="help">
+    <summary>Install on your iPad &amp; add your own sheet music</summary>
+    <div class="body">
+      <p><strong>Make it a home-screen app (so it opens full-screen and works without wifi):</strong></p>
+      <ol>
+        <li>Open this page in <strong>Safari</strong> on the iPad.</li>
+        <li>Tap the <strong>Share</strong> icon, then <strong>Add to Home Screen</strong>.</li>
+        <li>Launch it from the new icon — it runs full-screen, and the lessons stay available offline once they've loaded once.</li>
+      </ol>
+      <p><strong>Add your own pieces / PDFs:</strong> drop the files into the <code>practice-material</code> folder and tell your teacher (the agent) the titles — they'll be added to the list above so they're a tap away at the piano.</p>
+    </div>
+  </details>
+
+  <footer>
+    <p>Built from your <code>teach</code> workspace. New lessons appear here automatically as they're created.</p>
+    <p id="offlineNote" class="status"></p>
+  </footer>
+
+</div>
+
+<script>
+  /* ---- Practice material list (your teacher maintains this array) ---- */
+  var MATERIAL = [
+    // Example shape — add real pieces here:
+    // { title: "Clair de Lune (intro)", file: "./practice-material/clair-de-lune.pdf", note: "Debussy · D-flat major" }
+  ];
+
+  (function renderMaterial() {
+    var grid = document.getElementById('materialGrid');
+    if (!MATERIAL.length) {
+      grid.innerHTML =
+        '<div class="empty">No pieces added yet. Drop PDFs into the <code>practice-material</code> folder ' +
+        'and ask your teacher to list them here — then they\'re one tap away on the iPad.</div>';
+      return;
+    }
+    MATERIAL.forEach(function (m) {
+      var a = document.createElement('a');
+      a.className = 'card';
+      a.href = m.file;
+      a.innerHTML = '<div class="t"><span>' + m.title + '</span></div>' +
+        (m.note ? '<div class="d">' + m.note + '</div>' : '') +
+        '<div class="meta">Open</div>';
+      grid.appendChild(a);
+    });
+  })();
+
+  /* ---- Keep-screen-awake (Wake Lock) — hands are busy at the piano ---- */
+  (function () {
+    var btn = document.getElementById('wakeBtn');
+    var status = document.getElementById('status');
+    var lock = null;
+
+    if (!('wakeLock' in navigator)) {
+      btn.style.display = 'none';
+      return;
+    }
+    async function acquire() {
+      try {
+        lock = await navigator.wakeLock.request('screen');
+        btn.setAttribute('aria-pressed', 'true');
+        btn.textContent = '☀ Screen will stay on';
+        status.textContent = 'The screen won\'t dim while you practice.';
+        lock.addEventListener('release', function () {
+          btn.setAttribute('aria-pressed', 'false');
+          btn.textContent = '☀ Keep screen awake';
+        });
+      } catch (e) {
+        status.textContent = 'Couldn\'t hold the screen awake on this device.';
+      }
+    }
+    async function release() {
+      if (lock) { await lock.release(); lock = null; }
+      status.textContent = '';
+    }
+    btn.addEventListener('click', function () {
+      if (btn.getAttribute('aria-pressed') === 'true') release(); else acquire();
+    });
+    document.addEventListener('visibilitychange', function () {
+      if (lock !== null && document.visibilityState === 'visible' && btn.getAttribute('aria-pressed') === 'true') acquire();
+    });
+  })();
+
+  /* ---- Service worker: offline at the piano ---- */
+  (function () {
+    var note = document.getElementById('offlineNote');
+    if (!('serviceWorker' in navigator)) return;
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js').then(function () {
+        note.textContent = 'Saved for offline use — works at the piano without wifi.';
+      }).catch(function () { /* ignore: still works online */ });
+    });
+  })();
+</script>
+</body>
+</html>

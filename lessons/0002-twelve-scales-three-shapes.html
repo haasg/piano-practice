@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 2 · Twelve Scales, Three Shapes</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #fffef9;
+    --accent: #8b2500;
+    --rule: #d8d2c4;
+    --soft: #6b6657;
+    --good: #2e6b30;
+    --bad: #a33327;
+    --black: #2a2a2a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Georgia, 'Palatino Linotype', serif;
+    background: var(--paper);
+    color: var(--ink);
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+    line-height: 1.6;
+  }
+  h1 { font-size: 1.8rem; font-weight: normal; margin: 0 0 .2rem; }
+  h2 { font-size: 1.2rem; color: var(--accent); font-weight: normal; margin: 2.4rem 0 .6rem; border-bottom: 1px solid var(--rule); padding-bottom: .25rem; }
+  h3 { font-size: 1rem; margin: 1.4rem 0 .3rem; }
+  .kicker { text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; color: var(--soft); }
+  .lede { font-style: italic; color: var(--soft); margin-top: .3rem; }
+  .fing { font-family: Consolas, 'Courier New', monospace; letter-spacing: .12em; white-space: nowrap; }
+  .fing b { color: var(--accent); }
+  .win { background: #eef3e6; border-left: 3px solid var(--good); padding: .8rem 1rem; margin: 1.2rem 0; }
+  .note { background: #f5f1e4; border-left: 3px solid var(--accent); padding: .8rem 1rem; margin: 1.2rem 0; font-size: .95rem; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; font-size: .93rem; }
+  th { text-align: left; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--soft); font-weight: normal; padding: .3rem .55rem; border-bottom: 1px solid var(--ink); }
+  td { padding: .4rem .55rem; border-bottom: 1px solid var(--rule); }
+  td.scale { font-weight: bold; white-space: nowrap; }
+  a { color: var(--accent); }
+  ol li, ul li { margin-bottom: .4rem; }
+  .tag { display: inline-block; font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; padding: .1rem .4rem; border-radius: 2px; vertical-align: middle; }
+  .tag.f1 { background: #dfe9d4; color: #3a5a2a; }
+  .tag.f2 { background: #e4dcc4; color: #6a5320; }
+  .tag.f3 { background: #f0dcd2; color: #7a2e15; }
+
+  /* Trainer */
+  .trainer { border: 1px solid var(--rule); padding: 1rem 1.2rem 1.4rem; margin: 1rem 0; background: #fbf9f2; }
+  .trainer-controls { margin-bottom: .4rem; }
+  .trainer select, .trainer button.reset {
+    font-family: inherit; font-size: .95rem; padding: .25rem .5rem;
+    border: 1px solid var(--soft); background: var(--paper); color: var(--ink);
+  }
+  .fam-label { font-size: .8rem; color: var(--soft); margin: .3rem 0 .2rem; min-height: 1.2em; }
+  .note-strip { display: flex; gap: .35rem; flex-wrap: wrap; margin: .6rem 0; }
+  .note-cell {
+    min-width: 3rem; text-align: center; padding: .4rem .2rem;
+    border: 1px solid var(--rule); background: var(--paper); font-size: .98rem;
+  }
+  .note-cell.black { background: #efece2; }
+  .note-cell.current { border-color: var(--accent); background: #fdeede; font-weight: bold; }
+  .note-cell.done { background: #eef3e6; border-color: var(--good); color: var(--good); }
+  .note-cell .got { display: block; font-size: .75rem; font-family: Consolas, monospace; min-height: 1em; color: var(--accent); }
+  .finger-pad { display: flex; gap: .5rem; margin-top: .6rem; flex-wrap: wrap; }
+  .finger-pad button {
+    font-family: Consolas, monospace; font-size: 1.3rem; width: 3rem; height: 3rem;
+    border: 1px solid var(--soft); background: var(--paper); cursor: pointer;
+  }
+  .finger-pad button:hover { background: #f1ecdd; }
+  .trainer-msg { min-height: 1.4em; margin-top: .6rem; font-size: .95rem; }
+  .trainer-msg.good { color: var(--good); }
+  .trainer-msg.bad { color: var(--bad); }
+  .streak { font-size: .85rem; color: var(--soft); margin-top: .3rem; }
+
+  /* Quiz */
+  .q { border: 1px solid var(--rule); padding: .9rem 1.1rem; margin: .8rem 0; background: #fbf9f2; }
+  .q p { margin: 0 0 .6rem; }
+  .q .opts { display: flex; gap: .5rem; flex-wrap: wrap; }
+  .q .opts button { font-family: inherit; font-size: .95rem; padding: .4rem .9rem; border: 1px solid var(--soft); background: var(--paper); cursor: pointer; }
+  .q .opts button:hover { background: #f1ecdd; }
+  .q .opts button.right { background: #eef3e6; border-color: var(--good); color: var(--good); font-weight: bold; }
+  .q .opts button.wrong { background: #f6ddd8; border-color: var(--bad); color: var(--bad); }
+  .q .explain { font-size: .88rem; color: var(--soft); margin-top: .6rem; display: none; }
+  .q.answered .explain { display: block; }
+
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: .9rem; color: var(--soft); }
+  @media print { .trainer .finger-pad, .q .opts { display: none; } .q.answered .explain { display: block; } body { padding: 0; } }
+</style>
+</head>
+<body>
+
+<p class="kicker">Lesson 2 · Piano Workspace · ~20 minutes</p>
+<h1>Twelve Scales, Three Shapes</h1>
+<p class="lede">You already own the white-key shape. Here are the other two — and a drill that points your effort at the five keys that are actually new.</p>
+
+<h2>The reframe: don't learn 12 scales</h2>
+<p>Memorizing twelve separate finger sequences is a working-memory tax you don't need to pay. Every major scale belongs to one of <strong>three fingering shapes</strong>. Learn the three shapes and the logic that generates them, and the twelve scales fall out. You proved Shape 1 is solid by playing C and G hands-together at 120 — so two-thirds of the work left is really just <em>five black-key scales sharing one idea</em>.</p>
+
+<p>Why this serves the mission: the keys you <em>can't</em> currently sight-read cold — the four-and-five-flat keys a film cue or a ballad sits in — are exactly the black-key scales below. Once your hand knows that terrain, a run in D♭ stops being a wall.</p>
+
+<h2>Shape 1 — the home fingering <span class="tag f1">you own this</span></h2>
+<p>Five scales, identical fingering. <span class="fing">RH 1 2 3 <b>1</b> 2 3 4 5</span> · <span class="fing">LH 5 4 3 2 <b>1</b> 3 2 1</span></p>
+<table>
+  <tr><th>Scale</th><th>Notes</th></tr>
+  <tr><td class="scale">C, G, D, A, E major</td><td class="notes">All thumb-tucks-after-3. Spend almost no time here — just confirm D, A, E feel like C and G.</td></tr>
+</table>
+
+<h2>Shape 2 — one-hand variants <span class="tag f2">a day each</span></h2>
+<p>Each changes <em>one</em> hand from the home shape. That's the whole lesson for these two.</p>
+<table>
+  <tr><th>Scale</th><th>Right hand</th><th>Left hand</th><th>What changed</th></tr>
+  <tr><td class="scale">B major</td><td class="fing">1 2 3 <b>1</b> 2 3 4 5</td><td class="fing">4 3 2 1 <b>4</b> 3 2 1</td><td>Home RH; LH just starts on 4 instead of 5.</td></tr>
+  <tr><td class="scale">F major</td><td class="fing">1 2 3 4 <b>1</b> 2 3 4</td><td class="fing">5 4 3 2 <b>1</b> 3 2 1</td><td>Home LH; RH uses 4 on B♭ so the thumb stays off the black key.</td></tr>
+</table>
+
+<h2>Shape 3 — black-key tonics <span class="tag f3">the real work</span></h2>
+<p>These five are where your daily drill should live. They share one governing idea:</p>
+<div class="note">
+  <strong>The rule that generates all five:</strong> the thumb never plays a black key. So you <em>start on a long finger</em> (2 or 3) and the thumb waits to drop on the first white key it can reach. In the left hand, all five begin with the <span class="fing">1 → 4</span> pivot (thumb on a white key, then 4 reaches over).
+</div>
+<table>
+  <tr><th>Scale</th><th>Right hand</th><th>Left hand</th><th>Notes</th></tr>
+  <tr><td class="scale">B♭ major</td><td class="fing">2 <b>1</b> 2 3 <b>1</b> 2 3 4</td><td class="fing">3 2 <b>1</b> 4 3 2 1 2</td><td class="notes">B♭ C D E♭ F G A B♭</td></tr>
+  <tr><td class="scale">E♭ major</td><td class="fing">2 <b>1</b> 2 3 4 <b>1</b> 2 3</td><td class="fing">3 2 <b>1</b> 4 3 2 1 2</td><td class="notes">E♭ F G A♭ B♭ C D E♭</td></tr>
+  <tr><td class="scale">A♭ major</td><td class="fing">2 3 <b>1</b> 2 3 <b>1</b> 2 3</td><td class="fing">3 2 <b>1</b> 4 3 2 1 2</td><td class="notes">A♭ B♭ C D♭ E♭ F G A♭</td></tr>
+  <tr><td class="scale">D♭ major</td><td class="fing">2 3 <b>1</b> 2 3 4 <b>1</b> 2</td><td class="fing">3 2 <b>1</b> 4 3 2 1 2</td><td class="notes">D♭ E♭ F G♭ A♭ B♭ C D♭</td></tr>
+  <tr><td class="scale">G♭ major</td><td class="fing">2 3 4 <b>1</b> 2 3 <b>1</b> 2</td><td class="fing">4 3 2 <b>1</b> 3 2 1 2</td><td class="notes">G♭ A♭ B♭ C♭ D♭ E♭ F G♭</td></tr>
+</table>
+<p class="note" style="border-left-color:var(--soft)"><strong>Heads-up on convention:</strong> for the black-key keys, method books disagree about the very first finger (some start B♭ RH on 4, not 2). The <em>shape</em> — start long, thumb on white keys, LH 1→4 pivot — is universal; the exact start finger is a coin-flip. Pick the version on this page, or whatever your old method book used, and stay consistent. If you learned different fingerings and want to reconcile them, ask me. (Fingerings verified against the <a href="https://learnmusictheory.net/PDFs/pdffiles/01-02-07-ScalesforPiano.pdf">LearnMusicTheory.net chart</a>; full reference: <a href="../reference/scale-fingerings.html">Major Scale Fingerings, all 12 keys</a>.)</p>
+
+<div class="win">
+  <strong>This week's win:</strong> all five Shape-3 scales played hands-separately, one octave up and down, from memory, cleanly. Hands-together on whichever two feel closest (B♭ and E♭ are usually first). Don't chase 120 here — chase <em>zero errors</em> at whatever tempo delivers it.
+</div>
+
+<h2>Drill it now — all-12 fingering trainer</h2>
+<p>Pick any scale and hand and tap the fingers in order (keys 1–5 work). The trainer tells you which shape-family the scale belongs to, and tracks a clean-pass streak. Push the black-key scales until you can do each one twice clean <em>without looking at the table above</em> — that retrieval-from-memory is the rep that counts, not reading the numbers off.</p>
+
+<div class="trainer" id="trainer">
+  <div class="trainer-controls">
+    <label>Scale:
+      <select id="scaleSel">
+        <optgroup label="Shape 1 — home (you own this)">
+          <option value="C">C major</option>
+          <option value="G">G major</option>
+          <option value="D">D major</option>
+          <option value="A">A major</option>
+          <option value="E">E major</option>
+        </optgroup>
+        <optgroup label="Shape 2 — one-hand variant">
+          <option value="B">B major</option>
+          <option value="F">F major</option>
+        </optgroup>
+        <optgroup label="Shape 3 — black-key (drill these)">
+          <option value="Bb" selected>B♭ major</option>
+          <option value="Eb">E♭ major</option>
+          <option value="Ab">A♭ major</option>
+          <option value="Db">D♭ major</option>
+          <option value="Gb">G♭ major</option>
+        </optgroup>
+      </select>
+    </label>
+    &nbsp;
+    <label>Hand:
+      <select id="handSel"><option value="RH">Right hand</option><option value="LH">Left hand</option></select>
+    </label>
+    &nbsp;
+    <button class="reset" id="resetBtn">Restart</button>
+  </div>
+  <div class="fam-label" id="famLabel"></div>
+  <div class="note-strip" id="noteStrip"></div>
+  <div class="finger-pad" id="fingerPad">
+    <button data-f="1">1</button><button data-f="2">2</button><button data-f="3">3</button><button data-f="4">4</button><button data-f="5">5</button>
+  </div>
+  <div class="trainer-msg" id="trainerMsg">Tap the finger for the first note.</div>
+  <div class="streak" id="streak">Clean passes this scale: 0</div>
+</div>
+
+<h2>Check the logic</h2>
+
+<div class="q" data-answer="2">
+  <p>1. B major and F major each differ from the home shape by changing:</p>
+  <div class="opts"><button>Neither hand</button><button>Both the hands</button><button>Only one hand</button><button>All five fingers</button></div>
+  <p class="explain">Each is a one-hand variant: B keeps the home RH (LH starts on 4); F keeps the home LH (RH adds a 4 on B♭). That's what makes them cheap to learn.</p>
+</div>
+
+<div class="q" data-answer="1">
+  <p>2. Why do all five black-key scales start on finger 2 or 3, never the thumb?</p>
+  <div class="opts"><button>To reach farther up</button><button>The thumb avoids blacks</button><button>To play them louder</button><button>It is purely arbitrary</button></div>
+  <p class="explain">The governing rule: the thumb never plays a black key in a scale. A black-key tonic forces you to start on a longer finger and let the thumb drop on the first white key.</p>
+</div>
+
+<div class="q" data-answer="0">
+  <p>3. The left hand in B♭, E♭, A♭, and D♭ major all share which pivot?</p>
+  <div class="opts"><button>Thumb then four</button><button>Five then three</button><button>Four then thumb</button><button>Two then five</button></div>
+  <p class="explain">All four LH fingerings run 3 2 <b>1 4</b> 3 2 1 — the thumb (1) lands on a white key, then finger 4 reaches over. Learn that pivot once and it covers four keys.</p>
+</div>
+
+<div class="q" data-answer="3">
+  <p>4. Given the home shape, which scale needs the LEAST new practice?</p>
+  <div class="opts"><button>D♭ major</button><button>G♭ major</button><button>B♭ major</button><button>D major</button></div>
+  <p class="explain">D major is Shape 1 — the identical fingering to C and G, which you already play at tempo. It's transfer, not new learning.</p>
+</div>
+
+<div class="q" data-answer="2">
+  <p>5. The target for the black-key scales this week is best described as:</p>
+  <div class="opts"><button>Fast as possible</button><button>Matching C tempo</button><button>Zero errors slowly</button><button>Hands together only</button></div>
+  <p class="explain">Accuracy first, always. Speed is a free byproduct of correct reps; a wrong note drilled fast is a wrong note you'll have to un-learn. Let tempo follow cleanliness.</p>
+</div>
+
+<h2>This week at the piano — the rotation</h2>
+<p>Same ~8-minute opening block, now weighted toward Shape 3. The principle is <em>interleaving</em>: rotating between scales rather than blocking one to death. It feels harder in the moment and produces markedly better retention — the research on random vs. blocked practice is unambiguous (<a href="https://bulletproofmusician.com/why-the-progress-in-the-practice-room-seems-to-disappear-overnight/">Carter, Bulletproof Musician</a>; <a href="https://www.mollygebrian.com/music-and-the-brain">Gebrian on interleaving</a>).</p>
+<ol>
+  <li><strong>Warm transfer (1 min).</strong> One Shape-1 scale (rotate C→G→D→A→E across days), hands together, to wake the hand up. This is review, not work.</li>
+  <li><strong>The new five, interleaved (5–6 min).</strong> Each day pick <em>two</em> Shape-3 scales and alternate them: B♭ right hand, E♭ right hand, B♭ left hand, E♭ left hand, then a hands-together attempt on each. Next day shift the pair (E♭+A♭, then A♭+D♭, then D♭+G♭, then G♭+B♭…). Every Shape-3 scale gets touched every 2–3 days.</li>
+  <li><strong>One Shape-2 (1 min).</strong> B or F major, alternating days, to keep them alive.</li>
+  <li><strong>Honest finish (1 min).</strong> One slow, deliberately perfect pass of the hardest scale you touched. End on a clean rep.</li>
+</ol>
+<div class="note">
+  <strong>The single rule that matters most:</strong> never play faster than your error-free speed. When a slip happens, stop, find the exact note, and play just that crossing slowly three times before continuing. That targeted error-correction — not volume of repetition — is what separated the fastest learners in the <a href="https://bulletproofmusician.com/8-things-top-practicers-do-differently/">UT Austin practice study</a>.
+</div>
+
+<h2>Go deeper</h2>
+<p><strong>Primary source for this lesson:</strong> <a href="https://bulletproofmusician.com/why-the-progress-in-the-practice-room-seems-to-disappear-overnight/">"Why the Progress You Make in the Practice Room Seems to Disappear Overnight" — Christine Carter, Bulletproof Musician</a> (~10 min). It explains why the interleaved rotation above beats hammering one scale at a time, with the motor-learning studies behind it. This is the principle we'll carry straight into how you learn your next piece.</p>
+
+<footer>
+  <p><strong>Linked:</strong> <a href="../reference/scale-fingerings.html">Reference — Major Scale Fingerings, all 12 keys</a> · <a href="0001-five-scales-one-fingering.html">Lesson 1 — Five Scales, One Fingering</a></p>
+  <p><strong>Questions?</strong> I'm your teacher — ask me anything: a fingering that fights you, how to reconcile a different convention you learned, when to add minor scales, or whether you're ready to apply this to a real piece. Report back after a few days of the rotation and the next lesson will meet you where you actually are.</p>
+</footer>
+
+<script>
+(function () {
+  var DATA = {
+    C:  {fam:1, notes:['C','D','E','F','G','A','B','C'],          black:[0,0,0,0,0,0,0,0], RH:[1,2,3,1,2,3,4,5], LH:[5,4,3,2,1,3,2,1]},
+    G:  {fam:1, notes:['G','A','B','C','D','E','F♯','G'],         black:[0,0,0,0,0,0,1,0], RH:[1,2,3,1,2,3,4,5], LH:[5,4,3,2,1,3,2,1]},
+    D:  {fam:1, notes:['D','E','F♯','G','A','B','C♯','D'],        black:[0,0,1,0,0,0,1,0], RH:[1,2,3,1,2,3,4,5], LH:[5,4,3,2,1,3,2,1]},
+    A:  {fam:1, notes:['A','B','C♯','D','E','F♯','G♯','A'],       black:[0,0,1,0,0,1,1,0], RH:[1,2,3,1,2,3,4,5], LH:[5,4,3,2,1,3,2,1]},
+    E:  {fam:1, notes:['E','F♯','G♯','A','B','C♯','D♯','E'],      black:[0,1,1,0,0,1,1,0], RH:[1,2,3,1,2,3,4,5], LH:[5,4,3,2,1,3,2,1]},
+    B:  {fam:2, notes:['B','C♯','D♯','E','F♯','G♯','A♯','B'],     black:[0,1,1,0,1,1,1,0], RH:[1,2,3,1,2,3,4,5], LH:[4,3,2,1,4,3,2,1]},
+    F:  {fam:2, notes:['F','G','A','B♭','C','D','E','F'],         black:[0,0,0,1,0,0,0,0], RH:[1,2,3,4,1,2,3,4], LH:[5,4,3,2,1,3,2,1]},
+    Bb: {fam:3, notes:['B♭','C','D','E♭','F','G','A','B♭'],       black:[1,0,0,1,0,0,0,1], RH:[2,1,2,3,1,2,3,4], LH:[3,2,1,4,3,2,1,2]},
+    Eb: {fam:3, notes:['E♭','F','G','A♭','B♭','C','D','E♭'],      black:[1,0,0,1,1,0,0,1], RH:[2,1,2,3,4,1,2,3], LH:[3,2,1,4,3,2,1,2]},
+    Ab: {fam:3, notes:['A♭','B♭','C','D♭','E♭','F','G','A♭'],     black:[1,1,0,1,1,0,0,1], RH:[2,3,1,2,3,1,2,3], LH:[3,2,1,4,3,2,1,2]},
+    Db: {fam:3, notes:['D♭','E♭','F','G♭','A♭','B♭','C','D♭'],    black:[1,1,0,1,1,1,0,1], RH:[2,3,1,2,3,4,1,2], LH:[3,2,1,4,3,2,1,2]},
+    Gb: {fam:3, notes:['G♭','A♭','B♭','C♭','D♭','E♭','F','G♭'],   black:[1,1,1,0,1,1,0,1], RH:[2,3,4,1,2,3,1,2], LH:[4,3,2,1,3,2,1,2]}
+  };
+  var FAM = {1:'Shape 1 — home fingering (you own this).', 2:'Shape 2 — one-hand variant of the home shape.', 3:'Shape 3 — black-key tonic: start long, thumb waits for white keys.'};
+
+  var strip = document.getElementById('noteStrip');
+  var msg = document.getElementById('trainerMsg');
+  var famLabel = document.getElementById('famLabel');
+  var streakEl = document.getElementById('streak');
+  var scaleSel = document.getElementById('scaleSel');
+  var handSel = document.getElementById('handSel');
+  var pos = 0, errors = 0, cleanStreak = 0, lastKey = null;
+
+  function build() {
+    var key = scaleSel.value;
+    if (key !== lastKey) { cleanStreak = 0; lastKey = key; }
+    pos = 0; errors = 0;
+    var d = DATA[key];
+    famLabel.textContent = FAM[d.fam];
+    strip.innerHTML = '';
+    for (var i = 0; i < d.notes.length; i++) {
+      var cell = document.createElement('div');
+      cell.className = 'note-cell' + (d.black[i] ? ' black' : '') + (i === 0 ? ' current' : '');
+      cell.innerHTML = d.notes[i] + '<span class="got"></span>';
+      strip.appendChild(cell);
+    }
+    msg.className = 'trainer-msg';
+    msg.textContent = 'Tap the finger for the first note.';
+    streakEl.textContent = 'Clean passes this scale: ' + cleanStreak;
+  }
+
+  function press(f) {
+    var d = DATA[scaleSel.value];
+    var fingers = d[handSel.value];
+    if (pos >= fingers.length) return;
+    var cells = strip.children;
+    if (f === fingers[pos]) {
+      cells[pos].classList.remove('current');
+      cells[pos].classList.add('done');
+      cells[pos].querySelector('.got').textContent = f;
+      pos++;
+      if (pos === fingers.length) {
+        if (errors === 0) {
+          cleanStreak++;
+          msg.className = 'trainer-msg good';
+          msg.textContent = cleanStreak >= 2
+            ? 'Two clean in a row — this scale is sticking. Switch hands or move to the next one.'
+            : 'Clean pass! Now go again from memory for a second clean one.';
+        } else {
+          cleanStreak = 0;
+          msg.className = 'trainer-msg';
+          msg.textContent = 'Finished with ' + errors + ' slip' + (errors === 1 ? '' : 's') + '. Restart and aim for clean.';
+        }
+        streakEl.textContent = 'Clean passes this scale: ' + cleanStreak;
+      } else {
+        cells[pos].classList.add('current');
+        msg.className = 'trainer-msg good';
+        msg.textContent = 'Right.';
+      }
+    } else {
+      errors++;
+      msg.className = 'trainer-msg bad';
+      msg.textContent = 'Not ' + f + ' there. Where are you in the shape?';
+    }
+  }
+
+  document.getElementById('fingerPad').addEventListener('click', function (e) {
+    if (e.target.dataset.f) press(parseInt(e.target.dataset.f, 10));
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key >= '1' && e.key <= '5' && !e.target.matches('select')) press(parseInt(e.key, 10));
+  });
+  scaleSel.addEventListener('change', build);
+  handSel.addEventListener('change', function () { pos = 0; errors = 0; build2(); });
+  function build2() { // rebuild without resetting streak
+    pos = 0; errors = 0;
+    var d = DATA[scaleSel.value];
+    var cells = strip.children;
+    for (var i = 0; i < cells.length; i++) {
+      cells[i].className = 'note-cell' + (d.black[i] ? ' black' : '') + (i === 0 ? ' current' : '');
+      cells[i].querySelector('.got').textContent = '';
+    }
+    msg.className = 'trainer-msg'; msg.textContent = 'Tap the finger for the first note.';
+  }
+  document.getElementById('resetBtn').addEventListener('click', build2);
+  build();
+
+  document.querySelectorAll('.q').forEach(function (q) {
+    var answer = parseInt(q.dataset.answer, 10);
+    q.querySelectorAll('.opts button').forEach(function (btn, i) {
+      btn.addEventListener('click', function () {
+        if (q.classList.contains('answered')) return;
+        q.classList.add('answered');
+        if (i === answer) { btn.classList.add('right'); }
+        else { btn.classList.add('wrong'); q.querySelectorAll('.opts button')[answer].classList.add('right'); }
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

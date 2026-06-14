@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Notation Studio · Piano Practice</title>
+<meta name="theme-color" content="#8b2500">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="./vendor/abcjs-basic-min.js"></script>
+<style>
+  :root {
+    --ink: #1a1a1a; --paper: #fffef9; --accent: #8b2500;
+    --rule: #d8d2c4; --soft: #6b6657; --good: #2e6b30; --card: #fbf9f2;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: Georgia, 'Palatino Linotype', serif; background: var(--paper); color: var(--ink);
+    margin: 0; padding: env(safe-area-inset-top) 0 4rem; line-height: 1.55;
+  }
+  .wrap { max-width: 48rem; margin: 0 auto; padding: 2rem 1.25rem 0; }
+  .kicker { text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; color: var(--soft); }
+  h1 { font-size: 1.8rem; font-weight: normal; margin: .2rem 0 .1rem; }
+  .sub { font-style: italic; color: var(--soft); margin: 0 0 1.2rem; }
+  a.inline { color: var(--accent); }
+
+  .controls { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-bottom: 1rem; }
+  .controls label { font-size: .9rem; color: var(--soft); }
+  select, .ctl-btn {
+    font-family: inherit; font-size: 1rem; padding: .5rem .7rem;
+    border: 1px solid var(--soft); background: var(--paper); color: var(--ink); border-radius: 6px;
+  }
+  .ctl-btn { cursor: pointer; }
+  .ctl-btn[aria-pressed="true"] { background: #eef3e6; border-color: var(--good); color: var(--good); }
+
+  .scoreCard { background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 1rem .6rem .4rem; overflow-x: auto; }
+  .famNote { font-size: .82rem; color: var(--soft); margin: .6rem .3rem 0; min-height: 1.1em; }
+  #audio { margin-top: 1rem; }
+
+  .legend { background: var(--card); border-left: 3px solid var(--accent); padding: .8rem 1rem; margin: 1.4rem 0; font-size: .93rem; }
+  .legend strong { color: var(--accent); }
+
+  /* abcjs note highlighting during playback */
+  .abcjs-note.abcjs-note_selected, .abcjs-note.abcjs-highlight { fill: #8b2500 !important; }
+
+  footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: .85rem; color: var(--soft); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Tool · Notation Studio</p>
+  <h1>Notation Studio</h1>
+  <p class="sub">The scales you're drilling, as real notation — with your lesson fingerings above each note. Tap play to hear them.</p>
+
+  <div class="controls">
+    <label>Scale:
+      <select id="scaleSel">
+        <optgroup label="Shape 1 — home">
+          <option value="C">C major</option>
+          <option value="G">G major</option>
+          <option value="D" selected>D major</option>
+          <option value="A">A major</option>
+          <option value="E">E major</option>
+        </optgroup>
+        <optgroup label="Shape 2 — one-hand variant">
+          <option value="F">F major</option>
+        </optgroup>
+        <optgroup label="Shape 3 — black-key">
+          <option value="Bb">B♭ major</option>
+          <option value="Eb">E♭ major</option>
+        </optgroup>
+      </select>
+    </label>
+    <button class="ctl-btn" id="fingBtn" aria-pressed="true">Fingerings: on</button>
+  </div>
+
+  <div class="scoreCard">
+    <div id="notation"></div>
+  </div>
+  <div class="famNote" id="famNote"></div>
+  <div id="audio"></div>
+
+  <div class="legend">
+    <strong>This is the proof of concept.</strong> Every scale here is rendered live in your browser from a few characters of notation — not an image. That means I can generate <em>any</em> exercise as real, playable notation: arpeggio patterns, a tricky two-bar passage from a piece you're learning, sight-reading snippets that change each day. Tell me what would help and it becomes a page like this. Your own PDF sheet music can live here too — see the home screen.
+  </div>
+
+  <footer>
+    <p><a class="inline" href="./index.html">← Back to Piano Practice</a> · Related: <a class="inline" href="./lessons/0002-twelve-scales-three-shapes.html">Lesson 2 — Twelve Scales, Three Shapes</a></p>
+    <p><strong>Questions?</strong> Ask your teacher to add a specific exercise, a piece excerpt, or playback at a target tempo.</p>
+  </footer>
+</div>
+
+<script>
+  var SCALES = {
+    C:  { key:'C',  fam:1, notes:['C','D','E','F','G','A','B','c'],     fing:[1,2,3,1,2,3,4,5] },
+    G:  { key:'G',  fam:1, notes:['G','A','B','c','d','e','f','g'],     fing:[1,2,3,1,2,3,4,5] },
+    D:  { key:'D',  fam:1, notes:['D','E','F','G','A','B','c','d'],     fing:[1,2,3,1,2,3,4,5] },
+    A:  { key:'A',  fam:1, notes:['A','B','c','d','e','f','g','a'],     fing:[1,2,3,1,2,3,4,5] },
+    E:  { key:'E',  fam:1, notes:['E','F','G','A','B','c','d','e'],     fing:[1,2,3,1,2,3,4,5] },
+    F:  { key:'F',  fam:2, notes:['F','G','A','B','c','d','e','f'],     fing:[1,2,3,4,1,2,3,4] },
+    Bb: { key:'Bb', fam:3, notes:['B,','C','D','E','F','G','A','B'],    fing:[2,1,2,3,1,2,3,4] },
+    Eb: { key:'Eb', fam:3, notes:['E','F','G','A','B','c','d','e'],     fing:[2,1,2,3,4,1,2,3] }
+  };
+  var FAM = {
+    1: 'Shape 1 — home fingering (RH 1 2 3 1 2 3 4 5). You own this.',
+    2: 'Shape 2 — one-hand variant: RH adds a 4 so the thumb avoids the black key.',
+    3: 'Shape 3 — black-key tonic: start on a long finger, thumb waits for a white key.'
+  };
+
+  var showFing = true;
+  var synthControl = null;
+  var visualObj = null;
+
+  function buildAbc(s) {
+    var body = s.notes.map(function (n, i) {
+      var anno = showFing ? ('"^' + s.fing[i] + '"') : '';
+      return anno + n;
+    });
+    var line = body.slice(0, 4).join(' ') + ' | ' + body.slice(4).join(' ') + ' |]';
+    return 'X:1\nT:' + s.key + ' major\nM:4/4\nL:1/4\nK:' + s.key + '\n' + line;
+  }
+
+  function render() {
+    var s = SCALES[document.getElementById('scaleSel').value];
+    document.getElementById('famNote').textContent = FAM[s.fam];
+    var abc = buildAbc(s);
+    visualObj = ABCJS.renderAbc('notation', abc, {
+      responsive: 'resize',
+      add_classes: true,
+      staffwidth: 520,
+      paddingtop: 4,
+      paddingbottom: 4
+    })[0];
+    loadAudio();
+  }
+
+  function loadAudio() {
+    if (!ABCJS.synth.supportsAudio()) {
+      document.getElementById('audio').innerHTML =
+        '<p style="color:#6b6657;font-size:.85rem">Audio isn\'t supported in this browser, but the notation renders fine.</p>';
+      return;
+    }
+    if (!synthControl) {
+      synthControl = new ABCJS.synth.SynthController();
+      synthControl.load('#audio', null, {
+        displayPlay: true, displayProgress: true, displayRestart: true
+      });
+    }
+    synthControl.setTune(visualObj, false, {
+      chordsOff: true,
+      qpm: 100
+    });
+  }
+
+  document.getElementById('scaleSel').addEventListener('change', render);
+  document.getElementById('fingBtn').addEventListener('click', function () {
+    showFing = !showFing;
+    this.setAttribute('aria-pressed', showFing ? 'true' : 'false');
+    this.textContent = 'Fingerings: ' + (showFing ? 'on' : 'off');
+    render();
+  });
+
+  if (window.ABCJS) { render(); }
+  else { window.addEventListener('load', render); }
+</script>
+</body>
+</html>

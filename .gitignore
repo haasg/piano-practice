@@ -1,0 +1,18 @@
+# --- Personal teaching-workspace files: kept OUT of this public repo ---
+# These hold private notes and goals. To version-track them, either remove
+# the relevant line below (they'll become public) or keep them in a separate
+# private repo. The app and lessons are tracked; these are not.
+/MISSION.md
+/NOTES.md
+/RESOURCES.md
+/learning-records/
+
+# --- Claude Code skill tooling: not part of the app ---
+/.claude/
+
+# --- OS / editor noise ---
+Thumbs.db
+ehthumbs.db
+.DS_Store
+*~
+.vscode/
