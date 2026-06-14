@@ -1,6 +1,6 @@
 /* Piano Practice — service worker for offline use at the piano.
    Bump CACHE when lesson/reference files change so the iPad pulls fresh copies. */
-const CACHE = 'piano-practice-v5';
+const CACHE = 'piano-practice-v6';
 
 const CORE = [
   './',
@@ -12,6 +12,8 @@ const CORE = [
   './lessons/0001-five-scales-one-fingering.html',
   './lessons/0002-twelve-scales-three-shapes.html',
   './lessons/0002-workout.html',
+  './lessons/0003-chords-workout.html',
+  './lessons/0004-progressions-workout.html',
   './reference/scale-fingerings.html',
   './notation-studio.html',
   './vendor/abcjs-basic-min.js'

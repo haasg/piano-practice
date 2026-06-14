@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Chord Workout · Triads & Inversions</title>
+<meta name="theme-color" content="#8b2500">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Chords">
+<script src="../vendor/abcjs-basic-min.js"></script>
+<style>
+  :root {
+    --ink: #1a1a1a; --paper: #fffef9; --accent: #8b2500;
+    --rule: #d8d2c4; --soft: #6b6657; --good: #2e6b30; --card: #fbf9f2;
+    --f1: #3a5a2a; --f1bg: #dfe9d4; --f2: #6a5320; --f2bg: #e4dcc4; --f3: #7a2e15; --f3bg: #f0dcd2;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: Georgia, 'Palatino Linotype', serif; background: var(--paper); color: var(--ink);
+    margin: 0; padding: env(safe-area-inset-top) env(safe-area-inset-right) 3rem env(safe-area-inset-left);
+    line-height: 1.5;
+  }
+  .wrap { max-width: 42rem; margin: 0 auto; padding: 1.2rem 1.1rem 0; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+  .topbar a { color: var(--accent); text-decoration: none; font-size: .85rem; }
+  .kicker { text-transform: uppercase; letter-spacing: .14em; font-size: .68rem; color: var(--soft); }
+
+  .progress { margin: .9rem 0 .3rem; }
+  .bar { height: 7px; background: #ece7d8; border-radius: 4px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s; }
+  .pmeta { display: flex; justify-content: space-between; font-size: .72rem; color: var(--soft); margin-top: .35rem; letter-spacing: .03em; }
+
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 1.1rem 1.1rem 1.3rem; margin-top: .6rem; }
+  .blocklbl { text-transform: uppercase; letter-spacing: .12em; font-size: .68rem; color: var(--soft); }
+  .scalerow { display: flex; align-items: baseline; flex-wrap: wrap; gap: .6rem; margin: .15rem 0 .1rem; }
+  .scalename { font-size: 2rem; font-weight: normal; }
+  .tag { font-size: .64rem; text-transform: uppercase; letter-spacing: .07em; padding: .12rem .45rem; border-radius: 3px; }
+  .tag.f1 { background: var(--f1bg); color: var(--f1); }
+  .tag.f2 { background: var(--f2bg); color: var(--f2); }
+  .tag.f3 { background: var(--f3bg); color: var(--f3); }
+  .hand { display: inline-block; font-size: .95rem; color: var(--accent); border: 1px solid var(--accent); border-radius: 20px; padding: .12rem .7rem; margin-bottom: .5rem; }
+
+  .scoreCard { background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: .6rem .4rem .2rem; overflow-x: auto; }
+  .lhline { font-size: .8rem; color: var(--soft); margin: .45rem .2rem 0; font-family: Consolas,'Courier New',monospace; letter-spacing: .04em; }
+
+  .rx { font-size: 1.15rem; margin: .9rem 0 .15rem; }
+  .rx b { color: var(--accent); }
+  .cue { color: var(--soft); font-size: .95rem; margin: 0 0 .2rem; }
+
+  .reps { display: flex; gap: .5rem; flex-wrap: wrap; margin: 1rem 0 .4rem; }
+  .dot { width: 2.1rem; height: 2.1rem; border-radius: 50%; border: 2px solid var(--rule); background: var(--paper);
+         display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--soft); }
+  .dot.full { background: var(--good); border-color: var(--good); color: #fff; }
+  .repnote { font-size: .78rem; color: var(--soft); margin-bottom: .8rem; }
+
+  .primary { width: 100%; font-family: inherit; font-size: 1.25rem; padding: 1rem; border: none; border-radius: 10px;
+             background: var(--accent); color: #fff; cursor: pointer; }
+  .primary.done { background: var(--good); }
+  .primary:active { transform: scale(.995); }
+
+  .subrow { display: flex; justify-content: space-between; gap: .6rem; margin-top: .7rem; }
+  .subrow button { flex: 1; font-family: inherit; font-size: .9rem; padding: .6rem; border: 1px solid var(--soft);
+                   background: var(--paper); color: var(--ink); border-radius: 8px; cursor: pointer; }
+  .subrow button:disabled { opacity: .35; cursor: default; }
+
+  details.plan { margin-top: 1rem; background: var(--card); border: 1px solid var(--rule); border-radius: 8px; }
+  details.plan summary { cursor: pointer; padding: .7rem 1rem; font-size: .9rem; color: var(--accent); list-style: none; }
+  details.plan summary::-webkit-details-marker { display: none; }
+  details.plan summary::before { content: "＋ "; }
+  details.plan[open] summary::before { content: "－ "; }
+  details.plan .body { padding: 0 1.1rem 1rem; font-size: .9rem; }
+  details.plan h4 { color: var(--accent); font-weight: normal; text-transform: uppercase; letter-spacing: .08em; font-size: .72rem; margin: 1rem 0 .3rem; }
+  details.plan ul { margin: 0; padding-left: 1.1rem; color: var(--soft); }
+  details.plan li { margin-bottom: .2rem; }
+  details.plan p { color: var(--soft); }
+
+  .done { display: none; text-align: center; padding: 2.5rem 1rem; }
+  .done.show { display: block; }
+  .done h2 { font-size: 1.8rem; font-weight: normal; color: var(--good); margin: 0 0 .4rem; }
+  .done p { color: var(--soft); }
+  .done .count { font-size: .85rem; color: var(--soft); margin-top: .6rem; }
+  .done .primary { max-width: 18rem; margin: 1.4rem auto 0; }
+
+  .hide { display: none !important; }
+  .abcjs-note { fill: var(--ink); }
+  footer { margin-top: 1.6rem; padding-top: .9rem; border-top: 1px solid var(--rule); font-size: .82rem; color: var(--soft); }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <span class="kicker">Chords · Workout</span>
+    <a href="../index.html">✕ Done for today</a>
+  </div>
+
+  <div id="session">
+    <div class="progress">
+      <div class="bar"><i id="barFill"></i></div>
+      <div class="pmeta"><span id="pStep"></span><span id="pBlock"></span></div>
+    </div>
+
+    <div class="card" id="card">
+      <div class="blocklbl" id="blockLbl"></div>
+      <div class="scalerow">
+        <span class="scalename" id="scaleName"></span>
+        <span class="tag" id="famTag"></span>
+      </div>
+      <span class="hand" id="handLbl"></span>
+
+      <div class="scoreCard"><div id="score"></div></div>
+      <div class="lhline" id="lhLine"></div>
+
+      <p class="rx" id="rx"></p>
+      <p class="cue" id="cue"></p>
+
+      <div class="reps" id="reps"></div>
+      <div class="repnote">A rep counts only when every note of the chord sounds together and clean — no buzzing or missed tones. Roll it slowly first if you need to find it, then play it as a block.</div>
+
+      <button class="primary" id="repBtn">✓ Clean rep</button>
+      <div class="subrow">
+        <button id="backBtn">‹ Back</button>
+        <button id="resetBtn">↺ Reset reps</button>
+        <button id="skipBtn">Skip ›</button>
+      </div>
+    </div>
+
+    <details class="plan">
+      <summary>What is this &amp; the whole workout</summary>
+      <div class="body">
+        <p><strong>Why chords.</strong> Pop, film and cover arrangements are mostly chords, not running scales. The faster your hands <em>recognise and grab a triad as one shape</em>, the faster a lead sheet stops being note-by-note decoding. This workout builds that vocabulary the same way the scales do: a fixed plan you just run, a little more automatic each time.</p>
+        <p><strong>The shape.</strong> A major triad is root + a note two steps up + another two steps up (1–3–5 of the scale). Right hand grabs it with fingers <b>1&nbsp;3&nbsp;5</b>, left hand with <b>5&nbsp;3&nbsp;1</b>. Same hand-shape in every key — only which keys are black changes.</p>
+        <div id="planBody"></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="done" id="done">
+    <h2>Chords done.</h2>
+    <p>Twelve major triads, the C inversions, the common minors, and a I–IV–V to finish. That vocabulary is what makes a lead sheet readable.</p>
+    <p class="count" id="doneCount"></p>
+    <button class="primary done" id="againBtn">↺ Run it again</button>
+  </div>
+
+  <footer>
+    <p>This is a <em>do-it</em> page. Want to hear any chord or change the plan? <a href="../notation-studio.html">Notation Studio</a> · Next path: <a href="0004-progressions-workout.html">Progression Workout</a>.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  /* ---- Chord library: each entry holds the right-hand and left-hand notes as ABC chord
+         tokens (explicit accidentals, so no key signature is needed). Root position. ---- */
+  var MAJ = {
+    C:  { rh:'[CEG]',    lh:'[C,E,G,]'   },
+    G:  { rh:'[GBd]',    lh:'[G,B,D]'    },
+    D:  { rh:'[D^FA]',   lh:'[D,^F,A,]'  },
+    A:  { rh:'[A^ce]',   lh:'[A,^CE]'    },
+    E:  { rh:'[E^GB]',   lh:'[E,^G,B,]'  },
+    F:  { rh:'[FAc]',    lh:'[F,A,C]'    },
+    B:  { rh:'[B^d^f]',  lh:'[B,^D^F]'   },
+    Bb: { rh:'[_Bdf]',   lh:'[_B,DF]'    },
+    Eb: { rh:'[_EG_B]',  lh:'[_E,G,_B,]' },
+    Ab: { rh:'[_Ac_e]',  lh:'[_A,C_E]'   },
+    Db: { rh:'[_DF_A]',  lh:'[_D,F,_A,]' },
+    Gb: { rh:'[_G_B_d]', lh:'[_G,_B,_D]' }
+  };
+  var MIN = {
+    Am: { rh:'[Ace]', lh:'[A,CE]'  },
+    Em: { rh:'[EGB]', lh:'[E,G,B,]' },
+    Dm: { rh:'[DFA]', lh:'[D,F,A,]' }
+  };
+  // Display names (♭ glyph for readability)
+  var NAME = {
+    C:'C', G:'G', D:'D', A:'A', E:'E', F:'F', B:'B',
+    Bb:'B♭', Eb:'E♭', Ab:'A♭', Db:'D♭', Gb:'G♭',
+    Am:'A minor', Em:'E minor', Dm:'D minor'
+  };
+  // Whether a triad's tonic is a black key — used only to colour the difficulty tag.
+  var BLACK = { Bb:1, Eb:1, Ab:1, Db:1, Gb:1 };
+
+  /* C-major inversions (right hand). Chord symbol uses slash notation. */
+  var INV = {
+    Croot: { sym:'C',   rh:'[CEG]', rhf:'1 3 5' },
+    C1:    { sym:'C/E', rh:'[EGc]', rhf:'1 2 5' },
+    C2:    { sym:'C/G', rh:'[Gce]', rhf:'1 3 5' }
+  };
+
+  /* ---- Exercise builders ---- */
+  function majEx(k, reps, cue) {
+    var c = MAJ[k];
+    return { type:'chord', sym:NAME[k], short:k, hand:'HT', fam: BLACK[k] ? 3 : 1,
+             chords:[{ sym:k, rh:c.rh, lh:c.lh, rhf:'1 3 5', lhf:'5 3 1' }], reps:reps, cue:cue };
+  }
+  function minEx(k, reps, cue) {
+    var c = MIN[k];
+    return { type:'chord', sym:NAME[k], short:k, hand:'HT', fam:2,
+             chords:[{ sym:k, rh:c.rh, lh:c.lh, rhf:'1 3 5', lhf:'5 3 1' }], reps:reps, cue:cue };
+  }
+  function invEx(key, reps, cue) {
+    var i = INV[key];
+    return { type:'inv', sym:i.sym, short:i.sym, hand:'RH', fam:2,
+             chords:[{ sym:i.sym, rh:i.rh, lh:null, rhf:i.rhf, lhf:null }], reps:reps, cue:cue };
+  }
+  // I–IV–V loop in C (RH triad + LH single root) — the bridge to the Progression workout.
+  function progFinish(reps, cue) {
+    return { type:'prog', sym:'C → F → G', short:'I–IV–V', hand:'HT', fam:1, chords:[
+      { sym:'C', rh:'[CEG]', lh:'C,', rhf:'1 3 5', lhf:'5' },
+      { sym:'F', rh:'[FAc]', lh:'F,', rhf:'1 3 5', lhf:'5' },
+      { sym:'G', rh:'[GBd]', lh:'G,', rhf:'1 3 5', lhf:'5' }
+    ], reps:reps, cue:cue };
+  }
+
+  var CUE = {
+    easy:  'Roll it bottom-to-top once to hear it, then play all three notes together. Both hands. This is one of the three you will use constantly.',
+    sweep: 'Find the shape, then block it. Both hands together. Don’t rush between keys — name the chord out loud as you land it.',
+    black: 'Black-key tonic — the 3 finger sits on a black key in the middle. Keep 1 and 5 relaxed on the outer notes. Roll slowly, then block.',
+    inv:   'Same three notes, repackaged. Right hand only. Watch how the shape climbs the keyboard — this is how you keep a progression’s hand from leaping around.',
+    minor: 'Minor = lower the middle note a half step from the major. Same 1 3 5 / 5 3 1 grip. Both hands.',
+    finish:'Play the loop in time, both hands: left hand drops the single root, right hand blocks the triad. This is exactly how a pop song is comped — and the whole next workout.'
+  };
+
+  /* ---- The plan ---- */
+  var PLAN = [
+    { block:'Warm-up · the big three', items:[
+      majEx('C',3,CUE.easy), majEx('F',3,CUE.easy), majEx('G',3,CUE.easy)
+    ]},
+    { block:'The major-triad sweep · all twelve', items:[
+      majEx('D',2,CUE.sweep), majEx('A',2,CUE.sweep), majEx('E',2,CUE.sweep),
+      majEx('Bb',2,CUE.black), majEx('Eb',2,CUE.black), majEx('Ab',2,CUE.black),
+      majEx('Db',2,CUE.black), majEx('Gb',2,CUE.black), majEx('B',2,CUE.sweep)
+    ]},
+    { block:'Inversions · the shape moves (C major)', items:[
+      invEx('Croot',2,CUE.inv), invEx('C1',2,CUE.inv), invEx('C2',2,CUE.inv)
+    ]},
+    { block:'The common minors', items:[
+      minEx('Am',2,CUE.minor), minEx('Em',2,CUE.minor), minEx('Dm',2,CUE.minor)
+    ]},
+    { block:'Finish · a real progression', items:[
+      progFinish(2,CUE.finish)
+    ]}
+  ];
+
+  var FAMNAME = { 1:'Core', 2:'Variant', 3:'Black-key' };
+
+  var EX = [];
+  PLAN.forEach(function (b) { b.items.forEach(function (it) { EX.push({ block:b.block, ex:it }); }); });
+
+  var idx = 0;
+  var doneReps = EX.map(function () { return 0; });
+  var el = function (id) { return document.getElementById(id); };
+
+  function buildAbc(ex) {
+    var rhBar = ex.chords.map(function (c) { return '"' + c.sym + '"' + c.rh; }).join(' | ');
+    var abc = 'X:1\nM:4/4\nL:1/1\nK:C\n';
+    if (ex.hand === 'HT') {
+      abc += 'V:1 clef=treble\nV:2 clef=bass\n';
+      var lhBar = ex.chords.map(function (c) { return c.lh; }).join(' | ');
+      abc += '[V:1] ' + rhBar + ' |]\n[V:2] ' + lhBar + ' |]';
+    } else {
+      abc += 'V:1 clef=treble\n[V:1] ' + rhBar + ' |]';
+    }
+    return abc;
+  }
+
+  function renderScore(ex) {
+    ABCJS.renderAbc('score', buildAbc(ex), {
+      responsive: 'resize', add_classes: true, staffwidth: 460, paddingtop: 2, paddingbottom: 2, paddingleft: 0, paddingright: 0
+    });
+  }
+
+  function fingLine(ex) {
+    if (ex.hand === 'RH') {
+      // inversions: show each chord's RH fingering
+      return ex.chords.map(function (c) { return c.sym + ': ' + c.rhf; }).join('   ·   ') + '   (right hand)';
+    }
+    if (ex.type === 'prog') {
+      return 'RH triad 1 3 5   ·   LH root, finger 5';
+    }
+    return 'RH 1 3 5   ·   LH 5 3 1';
+  }
+
+  function render() {
+    var cur = EX[idx];
+    var ex = cur.ex;
+
+    el('barFill').style.width = (idx / EX.length * 100) + '%';
+    el('pStep').textContent = 'Exercise ' + (idx + 1) + ' of ' + EX.length;
+    el('pBlock').textContent = FAMNAME[ex.fam];
+
+    el('blockLbl').textContent = cur.block;
+    el('scaleName').textContent = ex.sym;
+    var tag = el('famTag');
+    tag.textContent = FAMNAME[ex.fam];
+    tag.className = 'tag f' + ex.fam;
+    el('handLbl').textContent = ex.hand === 'RH' ? 'Right hand' : 'Hands together';
+
+    renderScore(ex);
+    el('lhLine').textContent = fingLine(ex);
+
+    var r = ex.reps;
+    var what = ex.type === 'prog' ? 'clean loops through' : (ex.type === 'inv' ? 'clean reps' : 'clean reps — roll then block');
+    el('rx').innerHTML = '<b>' + r + ' ' + (r === 1 ? what.replace(/s\b/, '') : what) + '</b>.';
+    el('cue').textContent = ex.cue;
+
+    drawDots();
+    el('backBtn').disabled = (idx === 0);
+    updatePrimary();
+  }
+
+  function drawDots() {
+    var cur = EX[idx], got = doneReps[idx], box = el('reps');
+    box.innerHTML = '';
+    for (var i = 0; i < cur.ex.reps; i++) {
+      var d = document.createElement('div');
+      d.className = 'dot' + (i < got ? ' full' : '');
+      d.textContent = i < got ? '✓' : (i + 1);
+      box.appendChild(d);
+    }
+  }
+
+  function updatePrimary() {
+    var cur = EX[idx], btn = el('repBtn');
+    if (doneReps[idx] >= cur.ex.reps) {
+      btn.classList.add('done');
+      btn.textContent = (idx === EX.length - 1) ? 'Finish workout →' : 'Next exercise →';
+    } else {
+      btn.classList.remove('done');
+      btn.textContent = '✓ Clean rep  (' + doneReps[idx] + '/' + cur.ex.reps + ')';
+    }
+  }
+
+  function primaryAction() {
+    var cur = EX[idx];
+    if (doneReps[idx] >= cur.ex.reps) { next(); }
+    else { doneReps[idx]++; drawDots(); updatePrimary(); }
+  }
+
+  function next() {
+    if (idx === EX.length - 1) { finish(); return; }
+    idx++; render(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function back() { if (idx === 0) return; idx--; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+  function finish() {
+    el('session').classList.add('hide');
+    el('done').classList.add('show');
+    var n = 0;
+    try { n = (parseInt(localStorage.getItem('chord-workouts') || '0', 10) || 0) + 1; localStorage.setItem('chord-workouts', n); } catch (e) {}
+    el('doneCount').textContent = n ? ('Chord workout #' + n + ' in the books.') : '';
+  }
+
+  function reset() { doneReps[idx] = 0; drawDots(); updatePrimary(); }
+
+  (function buildOverview() {
+    var html = '';
+    PLAN.forEach(function (b) {
+      html += '<h4>' + b.block + '</h4><ul>';
+      b.items.forEach(function (it) {
+        html += '<li>' + it.sym + ' — ' + it.reps + ' rep' + (it.reps === 1 ? '' : 's') + '</li>';
+      });
+      html += '</ul>';
+    });
+    var total = EX.reduce(function (a, c) { return a + c.ex.reps; }, 0);
+    html += '<p style="margin-top:1rem;font-size:.82rem">' + EX.length + ' exercises · ' + total + ' clean reps · about 12–18 minutes. Same plan every session — it gets faster as the shapes set.</p>';
+    el('planBody').innerHTML = html;
+  })();
+
+  el('repBtn').addEventListener('click', primaryAction);
+  el('skipBtn').addEventListener('click', next);
+  el('backBtn').addEventListener('click', back);
+  el('resetBtn').addEventListener('click', reset);
+  el('againBtn').addEventListener('click', function () {
+    idx = 0; doneReps = EX.map(function () { return 0; });
+    el('done').classList.remove('show'); el('session').classList.remove('hide');
+    render(); window.scrollTo({ top: 0 });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); primaryAction(); }
+    else if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') back();
+  });
+
+  if (window.ABCJS) render();
+  else window.addEventListener('load', render);
+})();
+</script>
+</body>
+</html>

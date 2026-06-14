@@ -56,6 +56,8 @@
   .card .d { color: var(--soft); font-size: .95rem; margin-top: .25rem; }
   .card .meta { font-size: .78rem; color: var(--accent); margin-top: .5rem; letter-spacing: .04em; }
 
+  .tracknote { color: var(--soft); font-size: .92rem; margin: 0 0 .9rem; }
+  .card .meta .streak { color: var(--good); font-variant: small-caps; letter-spacing: .04em; }
   .empty { background: var(--card); border: 1px dashed var(--rule); border-radius: 8px; padding: 1.1rem 1.2rem; color: var(--soft); font-size: .95rem; }
   .empty code { background: #efece2; padding: .05rem .35rem; border-radius: 3px; font-size: .85em; }
 
@@ -94,12 +96,23 @@
     <p class="status" id="status"></p>
   </header>
 
-  <h2>Today's Practice</h2>
+  <h2>Daily Practice</h2>
+  <p class="tracknote">Three parallel tracks. Do your <strong>scales</strong> first, then pick one or two of the others — mixing them up day to day (interleaving) builds them faster than grinding one for weeks. Each is a guided, tap-off-your-reps workout that remembers your streak.</p>
   <div class="grid">
     <a class="card" href="./lessons/0002-workout.html">
-      <div class="t"><span>The Twelve-Scale Workout</span><span class="num">Sit down &amp; go</span></div>
-      <div class="d">The Lesson 2 plan as a guided workout — one exercise at a time, real notation with fingerings, tap off your reps. No counting, no decisions. Just do the plan.</div>
-      <div class="meta">~15–25 min · sets &amp; reps</div>
+      <div class="t"><span>① Scale Workout</span><span class="num">~15–25 min</span></div>
+      <div class="d">The twelve-scale plan, one exercise at a time, real notation with fingerings. The daily foundation — do this first.</div>
+      <div class="meta" data-streak="l2-workouts">Sets &amp; reps · tap off each clean pass</div>
+    </a>
+    <a class="card" href="./lessons/0003-chords-workout.html">
+      <div class="t"><span>② Chord Workout</span><span class="num">~12–18 min</span></div>
+      <div class="d">All twelve major triads, the C-major inversions, the common minors, and a I–IV–V to finish. The vocabulary that makes a lead sheet readable.</div>
+      <div class="meta" data-streak="chord-workouts">Triads &amp; inversions · hands together</div>
+    </a>
+    <a class="card" href="./lessons/0004-progressions-workout.html">
+      <div class="t"><span>③ Progression Workout</span><span class="num">~12–18 min</span></div>
+      <div class="d">The pop loops — the four-chord song, the doo-wop turn, ii–V–I — played as real comping, with the songs they unlock. The biggest lever on learning pieces faster.</div>
+      <div class="meta" data-streak="prog-workouts">Chord loops · left-hand root, right-hand triad</div>
     </a>
   </div>
 
@@ -182,6 +195,17 @@
         '<div class="meta">Open</div>';
       grid.appendChild(a);
     });
+  })();
+
+  /* ---- Show each track's completed-workout count (so progress is visible) ---- */
+  (function showStreaks() {
+    var metas = document.querySelectorAll('.meta[data-streak]');
+    for (var i = 0; i < metas.length; i++) {
+      var key = metas[i].getAttribute('data-streak');
+      var n = 0;
+      try { n = parseInt(localStorage.getItem(key) || '0', 10) || 0; } catch (e) {}
+      if (n > 0) metas[i].innerHTML += ' · <span class="streak">' + n + ' done</span>';
+    }
   })();
 
   /* ---- Keep-screen-awake (Wake Lock) — hands are busy at the piano ---- */
