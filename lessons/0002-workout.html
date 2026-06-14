@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Lesson 2 Workout · The Twelve-Scale Workout</title>
+<meta name="theme-color" content="#8b2500">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Workout">
+<script src="../vendor/abcjs-basic-min.js"></script>
+<style>
+  :root {
+    --ink: #1a1a1a; --paper: #fffef9; --accent: #8b2500;
+    --rule: #d8d2c4; --soft: #6b6657; --good: #2e6b30; --card: #fbf9f2;
+    --f1: #3a5a2a; --f1bg: #dfe9d4; --f2: #6a5320; --f2bg: #e4dcc4; --f3: #7a2e15; --f3bg: #f0dcd2;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: Georgia, 'Palatino Linotype', serif; background: var(--paper); color: var(--ink);
+    margin: 0; padding: env(safe-area-inset-top) env(safe-area-inset-right) 3rem env(safe-area-inset-left);
+    line-height: 1.5;
+  }
+  .wrap { max-width: 42rem; margin: 0 auto; padding: 1.2rem 1.1rem 0; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+  .topbar a { color: var(--accent); text-decoration: none; font-size: .85rem; }
+  .kicker { text-transform: uppercase; letter-spacing: .14em; font-size: .68rem; color: var(--soft); }
+
+  /* progress */
+  .progress { margin: .9rem 0 .3rem; }
+  .bar { height: 7px; background: #ece7d8; border-radius: 4px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s; }
+  .pmeta { display: flex; justify-content: space-between; font-size: .72rem; color: var(--soft); margin-top: .35rem; letter-spacing: .03em; }
+
+  /* exercise card */
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 1.1rem 1.1rem 1.3rem; margin-top: .6rem; }
+  .blocklbl { text-transform: uppercase; letter-spacing: .12em; font-size: .68rem; color: var(--soft); }
+  .scalerow { display: flex; align-items: baseline; flex-wrap: wrap; gap: .6rem; margin: .15rem 0 .1rem; }
+  .scalename { font-size: 2rem; font-weight: normal; }
+  .tag { font-size: .64rem; text-transform: uppercase; letter-spacing: .07em; padding: .12rem .45rem; border-radius: 3px; }
+  .tag.f1 { background: var(--f1bg); color: var(--f1); }
+  .tag.f2 { background: var(--f2bg); color: var(--f2); }
+  .tag.f3 { background: var(--f3bg); color: var(--f3); }
+  .hand { display: inline-block; font-size: .95rem; color: var(--accent); border: 1px solid var(--accent); border-radius: 20px; padding: .12rem .7rem; margin-bottom: .5rem; }
+
+  .scoreCard { background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: .6rem .4rem .2rem; overflow-x: auto; }
+  .lhline { font-size: .8rem; color: var(--soft); margin: .45rem .2rem 0; font-family: Consolas,'Courier New',monospace; letter-spacing: .06em; }
+
+  .rx { font-size: 1.15rem; margin: .9rem 0 .15rem; }
+  .rx b { color: var(--accent); }
+  .cue { color: var(--soft); font-size: .95rem; margin: 0 0 .2rem; }
+
+  /* rep dots */
+  .reps { display: flex; gap: .5rem; flex-wrap: wrap; margin: 1rem 0 .4rem; }
+  .dot { width: 2.1rem; height: 2.1rem; border-radius: 50%; border: 2px solid var(--rule); background: var(--paper);
+         display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--soft); }
+  .dot.full { background: var(--good); border-color: var(--good); color: #fff; }
+  .repnote { font-size: .78rem; color: var(--soft); margin-bottom: .8rem; }
+
+  .primary { width: 100%; font-family: inherit; font-size: 1.25rem; padding: 1rem; border: none; border-radius: 10px;
+             background: var(--accent); color: #fff; cursor: pointer; }
+  .primary.done { background: var(--good); }
+  .primary:active { transform: scale(.995); }
+
+  .subrow { display: flex; justify-content: space-between; gap: .6rem; margin-top: .7rem; }
+  .subrow button { flex: 1; font-family: inherit; font-size: .9rem; padding: .6rem; border: 1px solid var(--soft);
+                   background: var(--paper); color: var(--ink); border-radius: 8px; cursor: pointer; }
+  .subrow button:disabled { opacity: .35; cursor: default; }
+
+  /* overview */
+  details.plan { margin-top: 1rem; background: var(--card); border: 1px solid var(--rule); border-radius: 8px; }
+  details.plan summary { cursor: pointer; padding: .7rem 1rem; font-size: .9rem; color: var(--accent); list-style: none; }
+  details.plan summary::-webkit-details-marker { display: none; }
+  details.plan summary::before { content: "＋ "; }
+  details.plan[open] summary::before { content: "－ "; }
+  details.plan .body { padding: 0 1.1rem 1rem; font-size: .9rem; }
+  details.plan h4 { color: var(--accent); font-weight: normal; text-transform: uppercase; letter-spacing: .08em; font-size: .72rem; margin: 1rem 0 .3rem; }
+  details.plan ul { margin: 0; padding-left: 1.1rem; color: var(--soft); }
+  details.plan li { margin-bottom: .2rem; }
+
+  /* done screen */
+  .done { display: none; text-align: center; padding: 2.5rem 1rem; }
+  .done.show { display: block; }
+  .done h2 { font-size: 1.8rem; font-weight: normal; color: var(--good); margin: 0 0 .4rem; }
+  .done p { color: var(--soft); }
+  .done .count { font-size: .85rem; color: var(--soft); margin-top: .6rem; }
+  .done .primary { max-width: 18rem; margin: 1.4rem auto 0; }
+
+  .hide { display: none !important; }
+  .abcjs-note { fill: var(--ink); }
+  footer { margin-top: 1.6rem; padding-top: .9rem; border-top: 1px solid var(--rule); font-size: .82rem; color: var(--soft); }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <span class="kicker">Lesson 2 · Workout</span>
+    <a href="../index.html">✕ Done for today</a>
+  </div>
+
+  <div id="session">
+    <div class="progress">
+      <div class="bar"><i id="barFill"></i></div>
+      <div class="pmeta"><span id="pStep"></span><span id="pBlock"></span></div>
+    </div>
+
+    <div class="card" id="card">
+      <div class="blocklbl" id="blockLbl"></div>
+      <div class="scalerow">
+        <span class="scalename" id="scaleName"></span>
+        <span class="tag" id="famTag"></span>
+      </div>
+      <span class="hand" id="handLbl"></span>
+
+      <div class="scoreCard"><div id="score"></div></div>
+      <div class="lhline" id="lhLine"></div>
+
+      <p class="rx" id="rx"></p>
+      <p class="cue" id="cue"></p>
+
+      <div class="reps" id="reps"></div>
+      <div class="repnote">Only count a rep when the pass was clean — no wrong notes. A slip doesn't count; fix that one crossing and play it again.</div>
+
+      <button class="primary" id="repBtn">✓ Clean rep</button>
+      <div class="subrow">
+        <button id="backBtn">‹ Back</button>
+        <button id="resetBtn">↺ Reset reps</button>
+        <button id="skipBtn">Skip ›</button>
+      </div>
+    </div>
+
+    <details class="plan">
+      <summary>See the whole workout</summary>
+      <div class="body" id="planBody"></div>
+    </details>
+  </div>
+
+  <div class="done" id="done">
+    <h2>Workout complete.</h2>
+    <p>Every black-key scale worked, hands separate and together, and you finished on a clean pass. That's the whole plan.</p>
+    <p class="count" id="doneCount"></p>
+    <button class="primary done" id="againBtn">↺ Run it again</button>
+  </div>
+
+  <footer>
+    <p>This is the <em>do-it</em> page. The <a href="0002-twelve-scales-three-shapes.html">Lesson 2 explainer</a> covers the why (three shapes, the thumb rule). Want to hear any scale? <a href="../notation-studio.html">Notation Studio</a>.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  /* ---- Scale data: plain letter sequence (key signature supplies the accidentals) + both fingerings.
+         Octave tokens are generated per clef so each scale sits centered in its staff. ---- */
+  var SCALES = {
+    C:  { name:'C major',  key:'C',  fam:1, letters:['C','D','E','F','G','A','B','C'], RH:[1,2,3,1,2,3,4,5], LH:[5,4,3,2,1,3,2,1] },
+    G:  { name:'G major',  key:'G',  fam:1, letters:['G','A','B','C','D','E','F','G'], RH:[1,2,3,1,2,3,4,5], LH:[5,4,3,2,1,3,2,1] },
+    D:  { name:'D major',  key:'D',  fam:1, letters:['D','E','F','G','A','B','C','D'], RH:[1,2,3,1,2,3,4,5], LH:[5,4,3,2,1,3,2,1] },
+    A:  { name:'A major',  key:'A',  fam:1, letters:['A','B','C','D','E','F','G','A'], RH:[1,2,3,1,2,3,4,5], LH:[5,4,3,2,1,3,2,1] },
+    E:  { name:'E major',  key:'E',  fam:1, letters:['E','F','G','A','B','C','D','E'], RH:[1,2,3,1,2,3,4,5], LH:[5,4,3,2,1,3,2,1] },
+    F:  { name:'F major',  key:'F',  fam:2, letters:['F','G','A','B','C','D','E','F'], RH:[1,2,3,4,1,2,3,4], LH:[5,4,3,2,1,3,2,1] },
+    B:  { name:'B major',  key:'B',  fam:2, letters:['B','C','D','E','F','G','A','B'], RH:[1,2,3,1,2,3,4,5], LH:[4,3,2,1,4,3,2,1] },
+    Bb: { name:'B♭ major', key:'Bb', fam:3, letters:['B','C','D','E','F','G','A','B'], RH:[2,1,2,3,1,2,3,4], LH:[3,2,1,4,3,2,1,2] },
+    Eb: { name:'E♭ major', key:'Eb', fam:3, letters:['E','F','G','A','B','C','D','E'], RH:[2,1,2,3,4,1,2,3], LH:[3,2,1,4,3,2,1,2] },
+    Ab: { name:'A♭ major', key:'Ab', fam:3, letters:['A','B','C','D','E','F','G','A'], RH:[2,3,1,2,3,1,2,3], LH:[3,2,1,4,3,2,1,2] },
+    Db: { name:'D♭ major', key:'Db', fam:3, letters:['D','E','F','G','A','B','C','D'], RH:[2,3,1,2,3,4,1,2], LH:[3,2,1,4,3,2,1,2] },
+    Gb: { name:'G♭ major', key:'Gb', fam:3, letters:['G','A','B','C','D','E','F','G'], RH:[2,3,4,1,2,3,1,2], LH:[4,3,2,1,3,2,1,2] }
+  };
+
+  /* Turn a letter sequence into ABC octave tokens. ABC: C=middle C (C4), c=C5, C,=C3, etc.
+     Octave bumps each time the letter wraps past B back down to C (the scale ascending). */
+  var ORD = { C:0, D:1, E:2, F:3, G:4, A:5, B:6 };
+  function makeTokens(letters, startOct) {
+    var out = [], oct = startOct, prev = null;
+    letters.forEach(function (L) {
+      if (prev !== null && ORD[L] <= ORD[prev]) oct++;
+      prev = L;
+      var t;
+      if (oct >= 5) { t = L.toLowerCase(); for (var i = 0; i < oct - 5; i++) t += "'"; }
+      else { t = L; for (var j = 0; j < 4 - oct; j++) t += ','; }
+      out.push(t);
+    });
+    return out;
+  }
+  // Treble (RH / hands-together): tonics C–F sit at octave 4, the higher G–B drop to 3 so they don't fly off the top.
+  // Bass (LH): tonics C–E sit at octave 3, F–B drop to 2 — keeps every scale centered on its staff.
+  Object.keys(SCALES).forEach(function (k) {
+    var s = SCALES[k], tonic = s.letters[0];
+    s.treble = makeTokens(s.letters, ORD[tonic] <= ORD.F ? 4 : 3);
+    s.bass   = makeTokens(s.letters, ORD[tonic] <= ORD.E ? 3 : 2);
+  });
+
+  var CUE = {
+    own:    'Hands together, comfortable tempo. This is the shape you already own — just wake the hands up.',
+    s3_rh:  'Right hand alone, slowly. Start on a long finger; the thumb only ever lands on a white key.',
+    s3_lh:  'Left hand alone, slowly. Lead with the 1→4 pivot: thumb on a white key, then 4 reaches over.',
+    s3_ht:  'Both hands, as slow as it takes to stay clean. Slip? Stop, fix that one crossing, carry on. If hands-together isn’t there yet, play these reps hands-separately instead.',
+    b_rh:   'Right hand — this is the home RH shape, unchanged. Easy points.',
+    b_lh:   'Left hand — it just starts on finger 4 instead of 5. One small change.',
+    f_rh:   'Right hand — uses 4 on B♭ so the thumb stays off the black key.',
+    f_lh:   'Left hand — the home LH shape, unchanged.',
+    finish: 'One slow, deliberately perfect pass. Zero mistakes. This is how you always end a session — on a clean rep.'
+  };
+
+  /* ---- The plan: blocks of exercises. reps = clean one-octave (up & down) passes. ---- */
+  var PLAN = [
+    { block:'Warm-up · the shapes you own', items:[
+      { scale:'C', hand:'HT', reps:4, cue:CUE.own },
+      { scale:'G', hand:'HT', reps:4, cue:CUE.own }
+    ]},
+    { block:'The five black-key scales · the real work', items:[
+      { scale:'Bb', hand:'RH', reps:4, cue:CUE.s3_rh }, { scale:'Bb', hand:'LH', reps:4, cue:CUE.s3_lh }, { scale:'Bb', hand:'HT', reps:3, cue:CUE.s3_ht },
+      { scale:'Eb', hand:'RH', reps:4, cue:CUE.s3_rh }, { scale:'Eb', hand:'LH', reps:4, cue:CUE.s3_lh }, { scale:'Eb', hand:'HT', reps:3, cue:CUE.s3_ht },
+      { scale:'Ab', hand:'RH', reps:4, cue:CUE.s3_rh }, { scale:'Ab', hand:'LH', reps:4, cue:CUE.s3_lh }, { scale:'Ab', hand:'HT', reps:3, cue:CUE.s3_ht },
+      { scale:'Db', hand:'RH', reps:4, cue:CUE.s3_rh }, { scale:'Db', hand:'LH', reps:4, cue:CUE.s3_lh }, { scale:'Db', hand:'HT', reps:3, cue:CUE.s3_ht },
+      { scale:'Gb', hand:'RH', reps:4, cue:CUE.s3_rh }, { scale:'Gb', hand:'LH', reps:4, cue:CUE.s3_lh }, { scale:'Gb', hand:'HT', reps:3, cue:CUE.s3_ht }
+    ]},
+    { block:'Keep the variants alive', items:[
+      { scale:'B', hand:'RH', reps:2, cue:CUE.b_rh }, { scale:'B', hand:'LH', reps:2, cue:CUE.b_lh },
+      { scale:'F', hand:'RH', reps:2, cue:CUE.f_rh }, { scale:'F', hand:'LH', reps:2, cue:CUE.f_lh }
+    ]},
+    { block:'Honest finish', items:[
+      { scale:'Gb', hand:'HT', reps:2, cue:CUE.finish }
+    ]}
+  ];
+
+  var HANDNAME = { RH:'Right hand', LH:'Left hand', HT:'Hands together' };
+  var FAMNAME  = { 1:'Shape 1', 2:'Shape 2', 3:'Shape 3' };
+
+  /* flatten */
+  var EX = [];
+  PLAN.forEach(function (b) { b.items.forEach(function (it) { EX.push({ block:b.block, ex:it }); }); });
+
+  var idx = 0;
+  var doneReps = EX.map(function () { return 0; });
+
+  var el = function (id) { return document.getElementById(id); };
+
+  function buildAbc(scaleKey, hand) {
+    var s = SCALES[scaleKey];
+    var lh = (hand === 'LH');
+    var fing = lh ? s.LH : s.RH;                   // HT shows RH on the staff; LH printed as text below
+    var tokens = lh ? s.bass : s.treble;
+    var clef = lh ? ' clef=bass' : '';
+    var body = tokens.map(function (n, i) { return '"^' + fing[i] + '"' + n; });
+    var line = body.slice(0, 4).join(' ') + ' | ' + body.slice(4).join(' ') + ' |]';
+    return 'X:1\nM:4/4\nL:1/4\nK:' + s.key + clef + '\n' + line;
+  }
+
+  function renderScore(scaleKey, hand) {
+    ABCJS.renderAbc('score', buildAbc(scaleKey, hand), {
+      responsive: 'resize', add_classes: true, staffwidth: 460, paddingtop: 2, paddingbottom: 2, paddingleft: 0, paddingright: 0
+    });
+  }
+
+  function fingStr(arr) { return arr.join(' '); }
+
+  function render() {
+    var cur = EX[idx];
+    var s = SCALES[cur.ex.scale];
+    var hand = cur.ex.hand;
+
+    el('barFill').style.width = (idx / EX.length * 100) + '%';
+    el('pStep').textContent = 'Exercise ' + (idx + 1) + ' of ' + EX.length;
+    el('pBlock').textContent = FAMNAME[s.fam];
+
+    el('blockLbl').textContent = cur.block;
+    el('scaleName').textContent = s.name;
+    var tag = el('famTag');
+    tag.textContent = FAMNAME[s.fam];
+    tag.className = 'tag f' + s.fam;
+    el('handLbl').textContent = HANDNAME[hand];
+
+    renderScore(cur.ex.scale, hand);
+
+    // left-hand fingering reminder when playing hands together
+    if (hand === 'HT') {
+      el('lhLine').textContent = 'Left hand: ' + fingStr(s.LH) + '   (right hand printed above)';
+      el('lhLine').classList.remove('hide');
+    } else {
+      el('lhLine').classList.add('hide');
+    }
+
+    var r = cur.ex.reps;
+    el('rx').innerHTML = '<b>' + r + ' rep' + (r === 1 ? '' : 's') + '</b> — one octave up &amp; down each, slowly.';
+    el('cue').textContent = cur.ex.cue;
+
+    drawDots();
+    el('backBtn').disabled = (idx === 0);
+    updatePrimary();
+  }
+
+  function drawDots() {
+    var cur = EX[idx];
+    var got = doneReps[idx];
+    var box = el('reps');
+    box.innerHTML = '';
+    for (var i = 0; i < cur.ex.reps; i++) {
+      var d = document.createElement('div');
+      d.className = 'dot' + (i < got ? ' full' : '');
+      d.textContent = i < got ? '✓' : (i + 1);
+      box.appendChild(d);
+    }
+  }
+
+  function updatePrimary() {
+    var cur = EX[idx];
+    var btn = el('repBtn');
+    if (doneReps[idx] >= cur.ex.reps) {
+      btn.classList.add('done');
+      btn.textContent = (idx === EX.length - 1) ? 'Finish workout →' : 'Next exercise →';
+    } else {
+      btn.classList.remove('done');
+      btn.textContent = '✓ Clean rep  (' + doneReps[idx] + '/' + cur.ex.reps + ')';
+    }
+  }
+
+  function primaryAction() {
+    var cur = EX[idx];
+    if (doneReps[idx] >= cur.ex.reps) {
+      next();
+    } else {
+      doneReps[idx]++;
+      drawDots();
+      updatePrimary();
+    }
+  }
+
+  function next() {
+    if (idx === EX.length - 1) { finish(); return; }
+    idx++; render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function back() {
+    if (idx === 0) return;
+    idx--; render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function finish() {
+    el('session').classList.add('hide');
+    el('done').classList.add('show');
+    var n = 0;
+    try { n = (parseInt(localStorage.getItem('l2-workouts') || '0', 10) || 0) + 1; localStorage.setItem('l2-workouts', n); } catch (e) {}
+    el('doneCount').textContent = n ? ('Workout #' + n + ' in the books.') : '';
+  }
+
+  function reset() { doneReps[idx] = 0; drawDots(); updatePrimary(); }
+
+  /* overview */
+  (function buildOverview() {
+    var html = '';
+    PLAN.forEach(function (b) {
+      html += '<h4>' + b.block + '</h4><ul>';
+      b.items.forEach(function (it) {
+        html += '<li>' + SCALES[it.scale].name + ' — ' + HANDNAME[it.hand].toLowerCase() + ', ' + it.reps + ' rep' + (it.reps === 1 ? '' : 's') + '</li>';
+      });
+      html += '</ul>';
+    });
+    var total = EX.reduce(function (a, c) { return a + c.ex.reps; }, 0);
+    html += '<p style="color:var(--soft);margin-top:1rem;font-size:.82rem">' + EX.length + ' exercises · ' + total + ' clean passes · about 15–25 minutes. Repeat the same workout each session — it gets faster as the shapes set.</p>';
+    el('planBody').innerHTML = html;
+  })();
+
+  el('repBtn').addEventListener('click', primaryAction);
+  el('skipBtn').addEventListener('click', next);
+  el('backBtn').addEventListener('click', back);
+  el('resetBtn').addEventListener('click', reset);
+  el('againBtn').addEventListener('click', function () {
+    idx = 0; doneReps = EX.map(function () { return 0; });
+    el('done').classList.remove('show'); el('session').classList.remove('hide');
+    render(); window.scrollTo({ top: 0 });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); primaryAction(); }
+    else if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') back();
+  });
+
+  if (window.ABCJS) render();
+  else window.addEventListener('load', render);
+})();
+</script>
+</body>
+</html>
