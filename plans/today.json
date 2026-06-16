@@ -1,0 +1,195 @@
+{
+  "generatedAt": "2026-06-15",
+  "coachNote": "Today is a full baseline session. Warm up on C and G, then the real work — the black-key scales hands separate, then together. Two minor scales are new (your old plan couldn’t even show them). Finish with the chord shapes and pop progressions that make songs readable. Rate each one honestly — that’s what lets me shape tomorrow around you.",
+  "exercises": [
+    {
+      "id": "2026-06-15-c-ht",
+      "label": "C major — hands together",
+      "block": "Warm-up · the shapes you own",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:C\n\"^1\"C \"^2\"D \"^3\"E \"^1\"F | \"^2\"G \"^3\"A \"^4\"B \"^5\"c |]",
+      "hand": "HT",
+      "reps": 4,
+      "cue": "One octave up and down, comfortable tempo. Just wake the hands up.",
+      "tempo": 100,
+      "fingering": "LH: 5 4 3 2 1 3 2 1   (RH printed above the staff)"
+    },
+    {
+      "id": "2026-06-15-g-ht",
+      "label": "G major — hands together",
+      "block": "Warm-up · the shapes you own",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:G\n\"^1\"G, \"^2\"A, \"^3\"B, \"^1\"C | \"^2\"D \"^3\"E \"^4\"F \"^5\"G |]",
+      "hand": "HT",
+      "reps": 4,
+      "cue": "Same home shape, hands together. Loose and even.",
+      "tempo": 100,
+      "fingering": "LH: 5 4 3 2 1 3 2 1   (RH printed above the staff)"
+    },
+    {
+      "id": "2026-06-15-bb-rh",
+      "label": "B♭ major — right hand",
+      "block": "Black-key scales · the real work",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Bb\n\"^2\"B, \"^1\"C \"^2\"D \"^3\"E | \"^1\"F \"^2\"G \"^3\"A \"^4\"B |]",
+      "hand": "RH",
+      "reps": 4,
+      "cue": "Right hand alone, slowly. Start on a long finger; the thumb only lands on a white key.",
+      "tempo": 88
+    },
+    {
+      "id": "2026-06-15-bb-lh",
+      "label": "B♭ major — left hand",
+      "block": "Black-key scales · the real work",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Bb clef=bass\n\"^3\"B,, \"^2\"C, \"^1\"D, \"^4\"E, | \"^3\"F, \"^2\"G, \"^1\"A, \"^2\"B, |]",
+      "hand": "LH",
+      "reps": 4,
+      "cue": "Left hand alone, slowly. Lead with the 1→4 pivot: thumb on a white key, then 4 reaches over.",
+      "tempo": 88
+    },
+    {
+      "id": "2026-06-15-bb-ht",
+      "label": "B♭ major — hands together",
+      "block": "Black-key scales · the real work",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Bb\n\"^2\"B, \"^1\"C \"^2\"D \"^3\"E | \"^1\"F \"^2\"G \"^3\"A \"^4\"B |]",
+      "hand": "HT",
+      "reps": 3,
+      "cue": "Both hands, as slow as it takes to stay clean. Slip? Stop, fix that one crossing, carry on.",
+      "tempo": 80,
+      "fingering": "LH: 3 2 1 4 3 2 1 2   (RH printed above the staff)"
+    },
+    {
+      "id": "2026-06-15-eb-rh",
+      "label": "E♭ major — right hand",
+      "block": "Black-key scales · the real work",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Eb\n\"^2\"E \"^1\"F \"^2\"G \"^3\"A | \"^4\"B \"^1\"c \"^2\"d \"^3\"e |]",
+      "hand": "RH",
+      "reps": 4,
+      "cue": "Right hand alone, slowly. Start on a long finger; the thumb only lands on a white key.",
+      "tempo": 88
+    },
+    {
+      "id": "2026-06-15-eb-lh",
+      "label": "E♭ major — left hand",
+      "block": "Black-key scales · the real work",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Eb clef=bass\n\"^3\"E, \"^2\"F, \"^1\"G, \"^4\"A, | \"^3\"B, \"^2\"C \"^1\"D \"^2\"E |]",
+      "hand": "LH",
+      "reps": 4,
+      "cue": "Left hand alone, slowly. Lead with the 1→4 pivot: thumb on a white key, then 4 reaches over.",
+      "tempo": 88
+    },
+    {
+      "id": "2026-06-15-eb-ht",
+      "label": "E♭ major — hands together",
+      "block": "Black-key scales · the real work",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Eb\n\"^2\"E \"^1\"F \"^2\"G \"^3\"A | \"^4\"B \"^1\"c \"^2\"d \"^3\"e |]",
+      "hand": "HT",
+      "reps": 3,
+      "cue": "Both hands, as slow as it takes to stay clean. Slip? Stop, fix that one crossing, carry on.",
+      "tempo": 80,
+      "fingering": "LH: 3 2 1 4 3 2 1 2   (RH printed above the staff)"
+    },
+    {
+      "id": "2026-06-15-gb-rh",
+      "label": "G♭ major — right hand",
+      "block": "Black-key scales · the real work",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Gb\n\"^2\"G, \"^3\"A, \"^4\"B, \"^1\"C | \"^2\"D \"^3\"E \"^1\"F \"^2\"G |]",
+      "hand": "RH",
+      "reps": 4,
+      "cue": "Right hand alone, slowly. Start on a long finger; the thumb only lands on a white key.",
+      "tempo": 88
+    },
+    {
+      "id": "2026-06-15-gb-lh",
+      "label": "G♭ major — left hand",
+      "block": "Black-key scales · the real work",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Gb clef=bass\n\"^4\"G,, \"^3\"A,, \"^2\"B,, \"^1\"C, | \"^3\"D, \"^2\"E, \"^1\"F, \"^2\"G, |]",
+      "hand": "LH",
+      "reps": 4,
+      "cue": "Left hand alone, slowly. Lead with the 1→4 pivot: thumb on a white key, then 4 reaches over.",
+      "tempo": 88
+    },
+    {
+      "id": "2026-06-15-gb-ht",
+      "label": "G♭ major — hands together",
+      "block": "Black-key scales · the real work",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Gb\n\"^2\"G, \"^3\"A, \"^4\"B, \"^1\"C | \"^2\"D \"^3\"E \"^1\"F \"^2\"G |]",
+      "hand": "HT",
+      "reps": 3,
+      "cue": "Both hands, as slow as it takes to stay clean. Slip? Stop, fix that one crossing, carry on.",
+      "tempo": 80,
+      "fingering": "LH: 4 3 2 1 3 2 1 2   (RH printed above the staff)"
+    },
+    {
+      "id": "2026-06-15-am-rh",
+      "label": "A natural minor — right hand",
+      "block": "Minor scales · new territory",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Am\n\"^1\"A, \"^2\"B, \"^3\"C \"^1\"D | \"^2\"E \"^3\"F \"^4\"G \"^5\"A |]",
+      "hand": "RH",
+      "reps": 4,
+      "cue": "New today. Same fingering as C major — natural minor is the white keys from A. Hear the darker color.",
+      "tempo": 84
+    },
+    {
+      "id": "2026-06-15-am-lh",
+      "label": "A natural minor — left hand",
+      "block": "Minor scales · new territory",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Am clef=bass\n\"^5\"A,, \"^4\"B,, \"^3\"C, \"^2\"D, | \"^1\"E, \"^3\"F, \"^2\"G, \"^1\"A, |]",
+      "hand": "LH",
+      "reps": 3,
+      "cue": "Left hand alone. Same home LH shape, starting on A.",
+      "tempo": 84
+    },
+    {
+      "id": "2026-06-15-em-rh",
+      "label": "E natural minor — right hand",
+      "block": "Minor scales · new territory",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Em\n\"^1\"E \"^2\"F \"^3\"G \"^1\"A | \"^2\"B \"^3\"c \"^4\"d \"^5\"e |]",
+      "hand": "RH",
+      "reps": 3,
+      "cue": "E minor, right hand. One sharp (F♯) — the key signature handles it; finger it like C major.",
+      "tempo": 84
+    },
+    {
+      "id": "2026-06-15-c-triads-145",
+      "label": "C major I–IV–V triads — hands together",
+      "block": "Chords",
+      "abc": "X:1\nM:4/4\nL:1/1\nK:C\nV:1 clef=treble\nV:2 clef=bass\n[V:1] \"C\"[CEG] | \"F\"[FAc] | \"G\"[GBd] |]\n[V:2] C, | F, | G, |]",
+      "fingering": "RH 1 3 5 · LH 5 3 1",
+      "hand": "HT",
+      "reps": 4,
+      "cue": "Block each triad, hands together. Let the chord drop from the arm; don’t press.",
+      "tempo": 66
+    },
+    {
+      "id": "2026-06-15-c-inversions",
+      "label": "C major inversions — root, 1st, 2nd",
+      "block": "Chords",
+      "abc": "X:1\nM:4/4\nL:1/1\nK:C\n\"C\"[CEG] | \"C/E\"[EGc] | \"C/G\"[Gce] |]",
+      "fingering": "RH 1 3 5 on each shape · feel how the hand shifts up",
+      "hand": "RH",
+      "reps": 3,
+      "cue": "Same three notes, repackaged. Name each shape out loud — this is how you read slash chords on a lead sheet.",
+      "tempo": 66
+    },
+    {
+      "id": "2026-06-15-pop-loop-1564",
+      "label": "I–V–vi–IV in C — the four-chord loop",
+      "block": "Progressions",
+      "abc": "X:1\nM:4/4\nL:1/1\nK:C\n\"C\"[CEG] | \"G\"[GBd] | \"Am\"[Ace] | \"F\"[FAc] |]",
+      "fingering": "RH 1 3 5 throughout · LH plays the single root under each",
+      "hand": "RH",
+      "reps": 3,
+      "cue": "The pop loop behind hundreds of songs. Smooth, even pulse; add the left-hand root when it feels easy.",
+      "tempo": 72
+    },
+    {
+      "id": "2026-06-15-ii-v-i",
+      "label": "ii–V–I in C — the turnaround",
+      "block": "Progressions",
+      "abc": "X:1\nM:4/4\nL:1/1\nK:C\n\"Dm\"[DFA] | \"G\"[GBd] | \"C\"[CEG] |]",
+      "fingering": "RH 1 3 5 on each · the move that ends a thousand songs",
+      "hand": "RH",
+      "reps": 3,
+      "cue": "Listen for the pull of G back home to C. This three-chord cadence is everywhere once you hear it.",
+      "tempo": 72
+    }
+  ]
+}

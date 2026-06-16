@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Today's Practice · Piano Practice</title>
+<meta name="theme-color" content="#8b2500">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Practice">
+<script src="./vendor/abcjs-basic-min.js"></script>
+<script src="./practice-engine.js"></script>
+<style>
+  :root {
+    --ink: #1a1a1a; --paper: #fffef9; --accent: #8b2500;
+    --rule: #d8d2c4; --soft: #6b6657; --good: #2e6b30; --card: #fbf9f2;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: Georgia, 'Palatino Linotype', serif; background: var(--paper); color: var(--ink);
+    margin: 0; padding: env(safe-area-inset-top) env(safe-area-inset-right) 3rem env(safe-area-inset-left);
+    line-height: 1.5;
+  }
+  .wrap { max-width: 42rem; margin: 0 auto; padding: 1.2rem 1.1rem 0; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+  .topbar a { color: var(--accent); text-decoration: none; font-size: .85rem; }
+  .kicker { text-transform: uppercase; letter-spacing: .14em; font-size: .68rem; color: var(--soft); }
+
+  /* sync / freshness line */
+  .freshness { font-size: .72rem; color: var(--soft); margin: .5rem 0 0; letter-spacing: .02em; min-height: 1em; }
+  .freshness .dot { display: inline-block; width: .5rem; height: .5rem; border-radius: 50%; background: var(--soft); margin-right: .35rem; vertical-align: middle; }
+  .freshness.ok .dot { background: var(--good); }
+  .freshness.pending .dot { background: #c08a2e; }
+
+  /* intro / coach briefing */
+  .intro { display: none; }
+  .intro.show { display: block; }
+  .briefing { background: #eef3e6; border: 1px solid #cfe0bf; border-left: 4px solid var(--good); border-radius: 10px; padding: 1rem 1.1rem; margin: 1rem 0; }
+  .briefing .lbl { text-transform: uppercase; letter-spacing: .12em; font-size: .66rem; color: var(--good); }
+  .briefing p { margin: .3rem 0 0; }
+  .estline { font-size: .85rem; color: var(--soft); margin: .2rem 0 .6rem; font-style: italic; }
+
+  /* progress */
+  .progress { margin: .9rem 0 .3rem; }
+  .bar { height: 7px; background: #ece7d8; border-radius: 4px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s; }
+  .pmeta { display: flex; justify-content: space-between; font-size: .72rem; color: var(--soft); margin-top: .35rem; letter-spacing: .03em; }
+
+  /* exercise card */
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 1.1rem 1.1rem 1.3rem; margin-top: .6rem; }
+  .blocklbl { text-transform: uppercase; letter-spacing: .12em; font-size: .68rem; color: var(--soft); }
+  .exname { font-size: 1.7rem; font-weight: normal; margin: .15rem 0 .35rem; }
+  .hand { display: inline-block; font-size: .9rem; color: var(--accent); border: 1px solid var(--accent); border-radius: 20px; padding: .1rem .7rem; margin-bottom: .5rem; }
+
+  .scoreCard { background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: .6rem .4rem .2rem; overflow-x: auto; }
+  .fingline { font-size: .8rem; color: var(--soft); margin: .45rem .2rem 0; font-family: Consolas,'Courier New',monospace; letter-spacing: .05em; }
+  #audio { margin: .5rem 0 0; }
+
+  .rx { font-size: 1.15rem; margin: .9rem 0 .15rem; }
+  .rx b { color: var(--accent); }
+  .cue { color: var(--soft); font-size: .95rem; margin: 0 0 .2rem; }
+
+  /* rep dots */
+  .reps { display: flex; gap: .5rem; flex-wrap: wrap; margin: 1rem 0 .4rem; }
+  .dotrep { width: 2.1rem; height: 2.1rem; border-radius: 50%; border: 2px solid var(--rule); background: var(--paper);
+         display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--soft); }
+  .dotrep.full { background: var(--good); border-color: var(--good); color: #fff; }
+  .repnote { font-size: .78rem; color: var(--soft); margin-bottom: .8rem; }
+
+  /* comfort rating */
+  .ratewrap { margin: .4rem 0 .2rem; }
+  .ratelbl { font-size: .8rem; color: var(--soft); margin-bottom: .35rem; }
+  .ratelbl .hint { color: var(--accent); }
+  .rate { display: flex; gap: .4rem; }
+  .pill { flex: 1; font-family: inherit; font-size: 1rem; padding: .55rem 0; border: 1px solid var(--soft);
+          background: var(--paper); color: var(--ink); border-radius: 8px; cursor: pointer; }
+  .pill[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .ratescale { display: flex; justify-content: space-between; font-size: .66rem; color: var(--soft); margin-top: .2rem; }
+
+  .primary { width: 100%; font-family: inherit; font-size: 1.25rem; padding: 1rem; border: none; border-radius: 10px;
+             background: var(--accent); color: #fff; cursor: pointer; margin-top: 1rem; }
+  .primary.done { background: var(--good); }
+  .primary:active { transform: scale(.995); }
+  .ghost { background: var(--paper); color: var(--ink); border: 1px solid var(--soft); }
+
+  .subrow { display: flex; justify-content: space-between; gap: .6rem; margin-top: .7rem; }
+  .subrow button { flex: 1; font-family: inherit; font-size: .9rem; padding: .6rem; border: 1px solid var(--soft);
+                   background: var(--paper); color: var(--ink); border-radius: 8px; cursor: pointer; }
+  .subrow button:disabled { opacity: .35; cursor: default; }
+
+  /* overview */
+  details.plan { margin-top: 1rem; background: var(--card); border: 1px solid var(--rule); border-radius: 8px; }
+  details.plan summary { cursor: pointer; padding: .7rem 1rem; font-size: .9rem; color: var(--accent); list-style: none; }
+  details.plan summary::-webkit-details-marker { display: none; }
+  details.plan summary::before { content: "＋ "; }
+  details.plan[open] summary::before { content: "－ "; }
+  details.plan .body { padding: 0 1.1rem 1rem; font-size: .9rem; }
+  details.plan h4 { color: var(--accent); font-weight: normal; text-transform: uppercase; letter-spacing: .08em; font-size: .72rem; margin: 1rem 0 .3rem; }
+  details.plan ul { margin: 0; padding-left: 1.1rem; color: var(--soft); }
+  details.plan li { margin-bottom: .2rem; }
+
+  /* done screen */
+  .done { display: none; text-align: center; padding: 2rem 1rem; }
+  .done.show { display: block; }
+  .done h2 { font-size: 1.8rem; font-weight: normal; color: var(--good); margin: 0 0 .4rem; }
+  .done p { color: var(--soft); }
+  .done .count { font-size: .85rem; color: var(--soft); margin-top: .6rem; }
+  .teacher { max-width: 26rem; margin: 1.4rem auto 0; text-align: left; }
+  .teacher label { font-size: .85rem; color: var(--soft); display: block; margin-bottom: .3rem; }
+  .teacher textarea { width: 100%; font-family: inherit; font-size: 1rem; padding: .7rem; border: 1px solid var(--rule);
+                      border-radius: 8px; background: #fff; color: var(--ink); resize: vertical; min-height: 4.5rem; }
+  .syncmsg { font-size: .8rem; color: var(--soft); margin-top: .7rem; min-height: 1.1em; }
+  .done .primary { max-width: 20rem; margin: 1.2rem auto 0; }
+
+  .hide { display: none !important; }
+  .abcjs-note { fill: var(--ink); }
+  .abcjs-note.abcjs-note_selected, .abcjs-note.abcjs-highlight { fill: #8b2500 !important; }
+  footer { margin-top: 1.6rem; padding-top: .9rem; border-top: 1px solid var(--rule); font-size: .82rem; color: var(--soft); }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <span class="kicker">Today's Practice</span>
+    <a href="./index.html">✕ Done for today</a>
+  </div>
+  <p class="freshness" id="freshness"></p>
+
+  <!-- Intro / coach briefing -->
+  <div class="intro" id="intro">
+    <div class="briefing">
+      <div class="lbl">Your teacher's note for today</div>
+      <p id="coachNote"></p>
+    </div>
+    <p class="estline" id="estLine"></p>
+    <details class="plan">
+      <summary>See the whole session</summary>
+      <div class="body" id="planBodyIntro"></div>
+    </details>
+    <button class="primary" id="beginBtn">Begin session →</button>
+  </div>
+
+  <!-- Stepper -->
+  <div id="session" class="hide">
+    <div class="progress">
+      <div class="bar"><i id="barFill"></i></div>
+      <div class="pmeta"><span id="pStep"></span><span id="pBlock"></span></div>
+    </div>
+
+    <div class="card" id="card">
+      <div class="blocklbl" id="blockLbl"></div>
+      <div class="exname" id="exName"></div>
+      <span class="hand" id="handLbl"></span>
+
+      <div class="scoreCard"><div id="score"></div></div>
+      <div class="fingline" id="fingLine"></div>
+      <div id="audio"></div>
+
+      <p class="rx" id="rx"></p>
+      <p class="cue" id="cue"></p>
+
+      <div class="reps" id="reps"></div>
+      <div class="repnote">Only count a rep when the pass was clean — no wrong notes. A slip doesn't count; fix it and play it again.</div>
+
+      <div class="ratewrap">
+        <div class="ratelbl">How comfortable did that feel? <span class="hint" id="rateHint"></span></div>
+        <div class="rate" id="rate"></div>
+        <div class="ratescale"><span>1 · shaky</span><span>3 · ok</span><span>5 · nailed it</span></div>
+      </div>
+
+      <button class="primary" id="repBtn">✓ Clean rep</button>
+      <div class="subrow">
+        <button id="backBtn">‹ Back</button>
+        <button id="resetBtn">↺ Reset reps</button>
+        <button id="skipBtn">Skip ›</button>
+      </div>
+    </div>
+
+    <details class="plan">
+      <summary>See the whole session</summary>
+      <div class="body" id="planBody"></div>
+    </details>
+  </div>
+
+  <!-- Done -->
+  <div class="done" id="done">
+    <h2>Session complete.</h2>
+    <p id="doneMsg">Every exercise worked. You finished — that's the whole plan for today.</p>
+    <p class="count" id="doneCount"></p>
+
+    <div class="teacher">
+      <label for="teacherNote">Anything to tell your teacher? <span style="color:var(--soft)">(optional — what felt hard, a song you want, an injury…)</span></label>
+      <textarea id="teacherNote" placeholder="e.g. G♭ left hand still feels stuck; I'd love to start River Flows in You"></textarea>
+    </div>
+    <p class="syncmsg" id="syncMsg"></p>
+
+    <button class="primary done" id="sendBtn">Send to your teacher &amp; finish →</button>
+    <button class="primary ghost" id="againBtn">↺ Run it again</button>
+  </div>
+
+  <footer>
+    <p>Your teacher rewrites this each morning from how the last session felt. Want to hear any exercise? Tap ▶ on its card. <a href="./index.html">← Home</a></p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var TRACK = 'session';
+  var PLAN_URL = './plans/today.json';
+
+  /* ---- Sync transport (the slice-2 Vercel relay). Until SYNC_ENDPOINT is set, ratings still
+          persist on-device and outgoing payloads queue in the outbox so they flush once it exists.
+          TO ACTIVATE SYNC: deploy the relay (see docs/sync-relay.md), then paste its full URL below
+          (it ends in /api/feedback), e.g. 'https://piano-practice.vercel.app/api/feedback'.
+          After editing this line, bump the CACHE string in sw.js so the iPad pulls the new file. ---- */
+  var SYNC_ENDPOINT = 'https://piano-practice-one.vercel.app/api/feedback';   // slice-2 Vercel relay
+  var OUTBOX = 'pp-outbox-v1';
+  var SYNCMETA = 'pp-sync-v1';
+  var RATINGS_STORE = 'pp-ratings-v1';
+
+  /* ---- Offline / first-run fallback: a tiny built-in session so practice is always available. ---- */
+  var DEFAULT_PLAN = {
+    generatedAt: null,
+    coachNote: "Offline starter session — your teacher's fresh plan will load next time you're online. Wake the hands up, then lock in the chord shapes.",
+    exercises: [
+      { id: 'default-c-maj-ht', label: 'C major — hands together', block: 'Warm-up',
+        abc: 'X:1\nM:4/4\nL:1/4\nK:C\n"^1"C "^2"D "^3"E "^1"F | "^2"G "^3"A "^4"B "^5"c |]',
+        fingering: 'LH: 5 4 3 2 1 3 2 1', hand: 'HT', reps: 4,
+        cue: 'One octave up and down, comfortable tempo. Just wake the hands up.', tempo: 100 },
+      { id: 'default-c-triads', label: 'C major I–IV–V triads', block: 'Chords',
+        abc: 'X:1\nM:4/4\nL:1/1\nK:C\nV:1 clef=treble\nV:2 clef=bass\n[V:1] "C"[CEG] | "F"[FAc] | "G"[GBd] |]\n[V:2] C, | F, | G, |]',
+        fingering: 'RH 1 3 5 · LH 5 3 1', hand: 'HT', reps: 3,
+        cue: 'Block each triad, hands together. Loose wrist; let the chord drop from the arm.', tempo: 66 }
+    ]
+  };
+
+  var el = function (id) { return document.getElementById(id); };
+  function store(key) { try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) { return null; } }
+  function put(key, v) { try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {} }
+  function nowIso() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+
+  /* ---- State (set after the plan loads) ---- */
+  var PLAN = null, EX = [], idx = 0, doneReps = [], sessionRatings = {};
+  var synthControl = null;
+
+  /* ---- Load + validate the plan. Each exercise's ABC must parse clean; un-renderable ones are skipped. ---- */
+  function validate(plan) {
+    if (!plan || !Array.isArray(plan.exercises)) return null;
+    var kept = plan.exercises.filter(function (ex) {
+      if (!ex || !ex.id || !ex.abc) return false;
+      try {
+        var t = ABCJS.parseOnly(ex.abc);
+        var w = (t && t[0] && t[0].warnings) || [];
+        return w.length === 0;
+      } catch (e) { return false; }
+    }).map(function (ex) {
+      return {
+        id: ex.id, label: ex.label || ex.id, block: ex.block || 'Practice',
+        abc: ex.abc, fingering: ex.fingering || '', hand: ex.hand || '',
+        reps: Math.max(1, parseInt(ex.reps, 10) || 1), cue: ex.cue || '',
+        tempo: parseInt(ex.tempo, 10) || 100
+      };
+    });
+    if (!kept.length) return null;
+    return { generatedAt: plan.generatedAt || null, coachNote: plan.coachNote || '', exercises: kept };
+  }
+
+  function loadPlan() {
+    return fetch(PLAN_URL, { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+      .then(function (j) { return validate(j) || DEFAULT_PLAN; })
+      .catch(function () { return DEFAULT_PLAN; });
+  }
+
+  /* ---- Freshness + sync indicator ---- */
+  function relTime(iso) {
+    if (!iso) return '';
+    var then = new Date(iso), now = new Date();
+    var mins = Math.round((now - then) / 60000);
+    if (isNaN(mins)) return '';
+    if (mins < 1) return 'just now';
+    if (mins < 60) return mins + ' min ago';
+    var hrs = Math.round(mins / 60);
+    if (hrs < 24) return hrs + ' hr ago';
+    return Math.round(hrs / 24) + ' day(s) ago';
+  }
+  function renderFreshness() {
+    var box = el('freshness');
+    var fresh = PLAN && PLAN.generatedAt ? ("Today's plan · written " + PLAN.generatedAt) : "Offline starter plan";
+    var meta = store(SYNCMETA);
+    var out = store(OUTBOX) || [];
+    var cls = 'freshness', sync;
+    if (out.length) { cls += ' pending'; sync = out.length + ' session(s) waiting to sync'; }
+    else if (meta && meta.ok) { cls += ' ok'; sync = 'synced ' + relTime(meta.at); }
+    else if (!SYNC_ENDPOINT) { sync = 'saved on this device'; }
+    else { sync = 'not yet synced'; }
+    box.className = cls;
+    box.innerHTML = '<span class="dot"></span>' + fresh + ' · ' + sync;
+  }
+
+  /* ---- Outbox: queue a payload, try to flush. Fire-and-forget; never blocks practice. ---- */
+  function queuePayload(payload) {
+    var out = store(OUTBOX) || [];
+    out.push(payload);
+    put(OUTBOX, out);
+  }
+  function flushOutbox() {
+    if (!SYNC_ENDPOINT) return Promise.resolve(false);
+    var out = store(OUTBOX) || [];
+    if (!out.length) return Promise.resolve(false);
+    // Send sequentially; keep any that fail.
+    var remaining = [];
+    return out.reduce(function (p, item) {
+      return p.then(function () {
+        return fetch(SYNC_ENDPOINT, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(item)
+        }).then(function (r) { if (!r.ok) throw new Error('http ' + r.status); })
+          .catch(function () { remaining.push(item); });
+      });
+    }, Promise.resolve()).then(function () {
+      put(OUTBOX, remaining);
+      put(SYNCMETA, { at: new Date().toISOString(), ok: remaining.length === 0 });
+      return remaining.length === 0;
+    });
+  }
+
+  /* ---- Rendering ---- */
+  var visualObj = null;
+  function renderScore(ex) {
+    try {
+      visualObj = ABCJS.renderAbc('score', ex.abc, {
+        responsive: 'resize', add_classes: true, staffwidth: 460,
+        paddingtop: 2, paddingbottom: 2, paddingleft: 0, paddingright: 0
+      })[0];
+    } catch (e) { visualObj = null; }
+    loadAudio(ex);
+  }
+  function loadAudio(ex) {
+    var box = el('audio');
+    if (!ABCJS.synth || !ABCJS.synth.supportsAudio || !ABCJS.synth.supportsAudio() || !visualObj) { box.innerHTML = ''; return; }
+    if (!synthControl) {
+      synthControl = new ABCJS.synth.SynthController();
+      synthControl.load('#audio', null, { displayPlay: true, displayProgress: true });
+    }
+    synthControl.setTune(visualObj, false, { chordsOff: false, qpm: ex.tempo || 100 });
+  }
+
+  function render() {
+    var ex = EX[idx];
+    el('barFill').style.width = (idx / EX.length * 100) + '%';
+    el('pStep').textContent = 'Exercise ' + (idx + 1) + ' of ' + EX.length;
+    el('pBlock').textContent = ex.block;
+    el('blockLbl').textContent = ex.block;
+    el('exName').textContent = ex.label;
+    var hp = el('handLbl');
+    if (ex.hand) { hp.textContent = ({ RH:'Right hand', LH:'Left hand', HT:'Hands together' })[ex.hand] || ex.hand; hp.classList.remove('hide'); }
+    else hp.classList.add('hide');
+
+    renderScore(ex);
+
+    if (ex.fingering) { el('fingLine').textContent = ex.fingering; el('fingLine').classList.remove('hide'); }
+    else el('fingLine').classList.add('hide');
+
+    var r = ex.reps;
+    el('rx').innerHTML = '<b>' + r + ' rep' + (r === 1 ? '' : 's') + '</b> — one clean pass each.';
+    el('cue').textContent = ex.cue;
+
+    drawDots();
+    drawRating();
+    el('backBtn').disabled = (idx === 0);
+    updatePrimary();
+  }
+
+  function drawDots() {
+    var ex = EX[idx], got = doneReps[idx], box = el('reps');
+    box.innerHTML = '';
+    for (var i = 0; i < ex.reps; i++) {
+      var d = document.createElement('div');
+      d.className = 'dotrep' + (i < got ? ' full' : '');
+      d.textContent = i < got ? '✓' : (i + 1);
+      box.appendChild(d);
+    }
+  }
+
+  function drawRating() {
+    var ex = EX[idx], box = el('rate');
+    box.innerHTML = '';
+    var picked = sessionRatings[ex.id];
+    for (var n = 1; n <= 5; n++) {
+      (function (score) {
+        var b = document.createElement('button');
+        b.className = 'pill';
+        b.textContent = score;
+        b.setAttribute('aria-pressed', picked === score ? 'true' : 'false');
+        b.addEventListener('click', function () {
+          sessionRatings[ex.id] = score;
+          if (window.PracticePlan) PracticePlan.rate(TRACK, ex.id, score);
+          drawRating();
+        });
+        box.appendChild(b);
+      })(n);
+    }
+    var last = window.PracticePlan ? PracticePlan.lastScore(TRACK, ex.id) : null;
+    el('rateHint').textContent = (last != null && picked == null) ? ('Last time: ' + last + '/5') : '';
+  }
+
+  function updatePrimary() {
+    var ex = EX[idx], btn = el('repBtn');
+    if (doneReps[idx] >= ex.reps) {
+      btn.classList.add('done');
+      btn.textContent = (idx === EX.length - 1) ? 'Finish session →' : 'Next exercise →';
+    } else {
+      btn.classList.remove('done');
+      btn.textContent = '✓ Clean rep  (' + doneReps[idx] + '/' + ex.reps + ')';
+    }
+  }
+
+  function primaryAction() {
+    var ex = EX[idx];
+    if (doneReps[idx] >= ex.reps) next();
+    else { doneReps[idx]++; drawDots(); updatePrimary(); }
+  }
+  function next() { if (idx === EX.length - 1) { finish(); return; } idx++; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function back() { if (idx === 0) return; idx--; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function reset() { doneReps[idx] = 0; drawDots(); updatePrimary(); }
+
+  function finish() {
+    el('session').classList.add('hide');
+    el('done').classList.add('show');
+    var n = 0;
+    try { n = (parseInt(localStorage.getItem('session-count') || '0', 10) || 0) + 1; localStorage.setItem('session-count', n); } catch (e) {}
+    el('doneCount').textContent = n ? ('Session #' + n + ' in the books.') : '';
+    el('syncMsg').textContent = '';
+    window.scrollTo({ top: 0 });
+  }
+
+  /* Build the payload from the on-device rating store + the teacher note, queue it, try to flush. */
+  function sendToTeacher() {
+    var note = el('teacherNote').value.trim();
+    var payload = {
+      track: TRACK,
+      sessionDate: nowIso(),
+      planGeneratedAt: PLAN ? PLAN.generatedAt : null,
+      exercises: EX.map(function (e) { return e.id; }),
+      note: note,
+      ratings: store(RATINGS_STORE) || {}
+    };
+    queuePayload(payload);
+    el('sendBtn').disabled = true;
+    el('syncMsg').textContent = SYNC_ENDPOINT ? 'Sending…' : 'Saved on this device — it will reach your teacher once syncing is switched on.';
+    flushOutbox().then(function (ok) {
+      renderFreshness();
+      el('syncMsg').textContent = !SYNC_ENDPOINT
+        ? 'Saved on this device — it will reach your teacher once syncing is switched on.'
+        : (ok ? 'Sent to your teacher. See you tomorrow.' : 'Saved — will send when you\'re back online.');
+    });
+  }
+
+  /* Rough session length: calibrated to ~28s per clean pass (reading + a few attempts + reset). */
+  function estMinutes() { return Math.max(1, Math.round(EX.reduce(function (a, c) { return a + c.reps; }, 0) * 28 / 60)); }
+
+  /* ---- Overview ---- */
+  function buildOverview(targetId) {
+    var byBlock = {}, order = [];
+    EX.forEach(function (e) { if (!(e.block in byBlock)) { byBlock[e.block] = []; order.push(e.block); } byBlock[e.block].push(e); });
+    var html = '';
+    order.forEach(function (b) {
+      html += '<h4>' + b + '</h4><ul>';
+      byBlock[b].forEach(function (e) {
+        html += '<li>' + e.label + (e.hand ? ' — ' + ({ RH:'right hand', LH:'left hand', HT:'hands together' })[e.hand] : '') + ', ' + e.reps + ' rep' + (e.reps === 1 ? '' : 's') + '</li>';
+      });
+      html += '</ul>';
+    });
+    var total = EX.reduce(function (a, c) { return a + c.reps; }, 0);
+    html += '<p style="color:var(--soft);margin-top:1rem;font-size:.82rem">' + EX.length + ' exercises · ' + total + ' clean passes · about ' + estMinutes() + ' min.</p>';
+    el(targetId).innerHTML = html;
+  }
+
+  /* ---- Wiring ---- */
+  el('repBtn').addEventListener('click', primaryAction);
+  el('skipBtn').addEventListener('click', next);
+  el('backBtn').addEventListener('click', back);
+  el('resetBtn').addEventListener('click', reset);
+  el('sendBtn').addEventListener('click', sendToTeacher);
+  el('beginBtn').addEventListener('click', function () {
+    el('intro').classList.remove('show');
+    el('session').classList.remove('hide');
+    render();
+  });
+  el('againBtn').addEventListener('click', function () {
+    idx = 0; doneReps = EX.map(function () { return 0; }); sessionRatings = {};
+    el('done').classList.remove('show'); el('session').classList.remove('hide');
+    el('sendBtn').disabled = false; el('teacherNote').value = '';
+    render(); window.scrollTo({ top: 0 });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (el('session').classList.contains('hide')) return;
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); primaryAction(); }
+    else if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') back();
+  });
+
+  /* ---- Boot ---- */
+  function boot() {
+    loadPlan().then(function (plan) {
+      PLAN = plan;
+      EX = plan.exercises;
+      doneReps = EX.map(function () { return 0; });
+      el('coachNote').textContent = plan.coachNote || 'Work through today\'s exercises, and rate each one so tomorrow fits you better.';
+      el('estLine').textContent = 'About ' + estMinutes() + ' minutes · ' + EX.length + ' exercises.';
+      buildOverview('planBodyIntro');
+      buildOverview('planBody');
+      renderFreshness();
+      el('intro').classList.add('show');
+      flushOutbox().then(renderFreshness);   // re-send anything queued from a previous offline session
+    });
+  }
+
+  if (window.ABCJS) boot();
+  else window.addEventListener('load', boot);
+})();
+</script>
+</body>
+</html>
