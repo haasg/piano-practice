@@ -248,6 +248,33 @@
   var PLAN = null, EX = [], idx = 0, doneReps = [], sessionRatings = {};
   var synthControl = null;
 
+  /* ---- Crash-proof local progress: persist reps, ratings, and the note draft as you go, keyed to
+          the day's plan, so a refresh / crash / leaving mid-session never loses anything. The note is
+          held here until a session syncs successfully; only then is the saved progress cleared. ---- */
+  var PROGRESS = 'pp-progress-v1';
+  function planId() { return (PLAN && PLAN.generatedAt) || ('offline-' + nowIso()); }
+  function saveProgress() {
+    var noteEl = el('teacherNote');
+    put(PROGRESS, { planId: planId(), idx: idx, doneReps: doneReps, sessionRatings: sessionRatings,
+                    note: noteEl ? noteEl.value : '' });
+  }
+  function clearProgress() { try { localStorage.removeItem(PROGRESS); } catch (e) {} }
+  function restoreProgress() {
+    var p = store(PROGRESS);
+    if (!p || p.planId !== planId()) return false;   // a new day / new plan starts clean
+    if (Array.isArray(p.doneReps) && p.doneReps.length === EX.length) {
+      doneReps = p.doneReps.map(function (n, i) { return Math.min(Math.max(parseInt(n, 10) || 0, 0), EX[i].reps); });
+      idx = Math.min(Math.max(parseInt(p.idx, 10) || 0, 0), EX.length - 1);
+      sessionRatings = (p.sessionRatings && typeof p.sessionRatings === 'object') ? p.sessionRatings : {};
+    }
+    var noteEl = el('teacherNote');
+    if (noteEl && typeof p.note === 'string') noteEl.value = p.note;
+    return true;
+  }
+  function hasProgress() {
+    return idx > 0 || doneReps.some(function (n) { return n > 0; }) || Object.keys(sessionRatings).length > 0;
+  }
+
   /* ---- Load + validate the plan. Each exercise's ABC must parse clean; un-renderable ones are skipped. ---- */
   function validate(plan) {
     if (!plan || !Array.isArray(plan.exercises)) return null;
@@ -401,6 +428,7 @@
           sessionRatings[ex.id] = score;
           if (window.PracticePlan) PracticePlan.rate(TRACK, ex.id, score);
           drawRating();
+          saveProgress();
         });
         box.appendChild(b);
       })(n);
@@ -423,11 +451,11 @@
   function primaryAction() {
     var ex = EX[idx];
     if (doneReps[idx] >= ex.reps) next();
-    else { doneReps[idx]++; drawDots(); updatePrimary(); }
+    else { doneReps[idx]++; drawDots(); updatePrimary(); saveProgress(); }
   }
-  function next() { if (idx === EX.length - 1) { finish(); return; } idx++; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  function back() { if (idx === 0) return; idx--; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  function reset() { doneReps[idx] = 0; drawDots(); updatePrimary(); }
+  function next() { if (idx === EX.length - 1) { finish(); return; } idx++; render(); saveProgress(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function back() { if (idx === 0) return; idx--; render(); saveProgress(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function reset() { doneReps[idx] = 0; drawDots(); updatePrimary(); saveProgress(); }
 
   function finish() {
     el('session').classList.add('hide');
@@ -436,6 +464,7 @@
     try { n = (parseInt(localStorage.getItem('session-count') || '0', 10) || 0) + 1; localStorage.setItem('session-count', n); } catch (e) {}
     el('doneCount').textContent = n ? ('Session #' + n + ' in the books.') : '';
     el('syncMsg').textContent = '';
+    saveProgress();                 // keep the note + completed state durable until it syncs
     window.scrollTo({ top: 0 });
   }
 
@@ -455,6 +484,7 @@
     el('syncMsg').textContent = SYNC_ENDPOINT ? 'Sending…' : 'Saved on this device — it will reach your teacher once syncing is switched on.';
     flushOutbox().then(function (ok) {
       renderFreshness();
+      if (ok) clearProgress();      // synced — the day's draft is safely off-device, start fresh next time
       el('syncMsg').textContent = !SYNC_ENDPOINT
         ? 'Saved on this device — it will reach your teacher once syncing is switched on.'
         : (ok ? 'Sent to your teacher. See you tomorrow.' : 'Saved — will send when you\'re back online.');
@@ -487,6 +517,7 @@
   el('backBtn').addEventListener('click', back);
   el('resetBtn').addEventListener('click', reset);
   el('sendBtn').addEventListener('click', sendToTeacher);
+  el('teacherNote').addEventListener('input', saveProgress);   // auto-save the note draft as you type
   el('beginBtn').addEventListener('click', function () {
     el('intro').classList.remove('show');
     el('session').classList.remove('hide');
@@ -496,6 +527,7 @@
     idx = 0; doneReps = EX.map(function () { return 0; }); sessionRatings = {};
     el('done').classList.remove('show'); el('session').classList.remove('hide');
     el('sendBtn').disabled = false; el('teacherNote').value = '';
+    clearProgress();
     render(); window.scrollTo({ top: 0 });
   });
   document.addEventListener('keydown', function (e) {
@@ -511,8 +543,10 @@
       PLAN = plan;
       EX = plan.exercises;
       doneReps = EX.map(function () { return 0; });
+      restoreProgress();              // bring back reps / ratings / note draft from a prior visit to today's plan
       el('coachNote').textContent = plan.coachNote || 'Work through today\'s exercises, and rate each one so tomorrow fits you better.';
       el('estLine').textContent = 'About ' + estMinutes() + ' minutes · ' + EX.length + ' exercises.';
+      if (hasProgress()) el('beginBtn').textContent = 'Resume session →';
       buildOverview('planBodyIntro');
       buildOverview('planBody');
       renderFreshness();

@@ -1,6 +1,6 @@
 /* Piano Practice — service worker for offline use at the piano.
    Bump CACHE when lesson/reference files change so the iPad pulls fresh copies. */
-const CACHE = 'piano-practice-v9';
+const CACHE = 'piano-practice-v10';
 
 const CORE = [
   './',
