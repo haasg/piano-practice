@@ -1,0 +1,447 @@
+{
+  "track": "session",
+  "sessionDate": "2026-06-19",
+  "planGeneratedAt": "2026-06-18",
+  "exercises": [
+    "2026-06-18-c-recall",
+    "2026-06-18-am-recall",
+    "2026-06-18-bb-ht",
+    "2026-06-18-eb-ht",
+    "2026-06-18-gb-rh",
+    "2026-06-18-gb-lh",
+    "2026-06-18-ab-rh",
+    "2026-06-18-db-rh",
+    "2026-06-18-a-harm-recall",
+    "2026-06-18-dm-ht",
+    "2026-06-18-seventh-arpeggios",
+    "2026-06-18-d-sevenths",
+    "2026-06-18-sevenths-ht",
+    "2026-06-18-blues-c"
+  ],
+  "note": "Too many 7ths. I care about pop culture music which rarely has 7ths",
+  "ratings": {
+    "session␟2026-06-15-c-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-g-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-bb-rh": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-bb-lh": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-bb-ht": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-eb-rh": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-eb-lh": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-eb-ht": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-gb-rh": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-gb-lh": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-gb-ht": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-am-rh": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-am-lh": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-em-rh": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-c-triads-145": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-c-inversions": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-pop-loop-1564": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-15-ii-v-i": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-15"
+    },
+    "session␟2026-06-16-c-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-g-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-bb-ht": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-eb-ht": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-gb-ht": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-bb-lh": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-eb-lh": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-ab-rh": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-am-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-a-harm-rh": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-c-sevenths": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-c-inv-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-c-arpeggio": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-pop-loop-g": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-16-pop-loop-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-16"
+    },
+    "session␟2026-06-17-c-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-bb-ht": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-eb-ht": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-gb-ht": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-bb-lh": {
+      "recent": [
+        4,
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-ab-rh": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-db-rh": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-a-harm-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-dm-rh": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-c-sevenths": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-g-sevenths": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-g-arpeggio": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-pop-loop-g-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-17-pop-loop-f": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-17"
+    },
+    "session␟2026-06-18-c-recall": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-bb-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-eb-ht": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-gb-rh": {
+      "recent": [
+        3,
+        2
+      ],
+      "last": 2,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-gb-lh": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-ab-rh": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-db-rh": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-a-harm-recall": {
+      "recent": [
+        4,
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-dm-ht": {
+      "recent": [
+        4
+      ],
+      "last": 4,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-seventh-arpeggios": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-d-sevenths": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-sevenths-ht": {
+      "recent": [
+        5
+      ],
+      "last": 5,
+      "date": "2026-06-19"
+    },
+    "session␟2026-06-18-blues-c": {
+      "recent": [
+        3
+      ],
+      "last": 3,
+      "date": "2026-06-19"
+    }
+  }
+}
