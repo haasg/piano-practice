@@ -3,18 +3,25 @@
 My evolving model of the student and a dated log of what I changed each run and why.
 I rewrite this file every session. See `instructor/MISSION.md` for how I work.
 
-**Last processed:** 2026-06-17 (feedback/2026-06-17-f7nmbp.json)
+**Last processed:** 2026-06-19 (feedback/2026-06-19-aqdg2e.json)
 
 ---
 
 ## Student model
 
 - **Stage:** advancing beginner, moving fast and notably self-aware. Owns C/G major, the
-  natural minors, and now A harmonic minor and the C/G/D seventh shapes. The frontier is
-  twofold: black-key coordination (hands) **and** recall (naming keys, recalling fingerings
-  without the page) — he flagged the second himself.
-- **Goal:** keep improving steadily toward playing real songs — readable notation, chord
-  fluency, both hands.
+  natural minors, A harmonic minor, triads/inversions/arpeggios, and now four-chord pop
+  shapes. The frontier is twofold: black-key coordination (hands) **and** recall (naming
+  keys, recalling fingerings without the page) — he flagged the second himself.
+- **Goal (sharpened 2026-06-19):** he plays for **pop / pop-culture music**, and told me
+  directly it "rarely has 7ths." Steer the harmony curriculum to what pop is built from —
+  triads, the common four-chord progressions, song-shaped patterns — not jazz voicings. The
+  through-line is still: readable notation, chord fluency, both hands, toward real songs he
+  recognizes.
+- **The taste signal (2026-06-19):** *"Too many 7ths. I care about pop culture music which
+  rarely has 7ths."* All three seventh exercises came back 5 (too easy) — so this is taste,
+  not difficulty. Pivoted the whole chord block from jazz ii–V–I sevenths to pop triad
+  progressions (I–V–vi–IV, the 50s I–vi–IV–V, same in G, broken-chord ballad pattern).
 - **The key insight (2026-06-17):** *"good muscle memory but need more to remember fingerings
   and which scale is which."* His hands are **ahead of his memory.** Motor skill is not the
   bottleneck on owned material — recall and identification are. This reframes the work: strip
@@ -33,15 +40,15 @@ I rewrite this file every session. See `instructor/MISSION.md` for how I work.
 
 | Thread | State | Next move |
 |---|---|---|
-| Owned scales (C / Am / A-harm) | 5/5, but recall weak | **fingerings removed** — recall + name the key |
-| B♭ / E♭ HT | steady 4 | tempo 88→90; fingerings stay (still settling) |
-| G♭ HT | **wall: 3 ×3 sessions** | **broke to hands-separate**, slow, fix the thumb-under |
-| B♭ LH alone | 4→5 | retired (owned) |
+| Owned scales (C / Am / A-harm) | recall now easy (5/4→5) | kept as light **maintenance warm-up**, fingerings off |
+| B♭ HT | 4→5 (owned) | held one more session to confirm, +tempo; next: pull fingerings |
+| E♭ HT | steady 4 | tempo nudge, fingerings stay |
+| G♭ | **wall, now regressing: HT 3×3, then RH 3→2 hands-separate** | **shrunk to a 4-note thumb-under drill**, slow (60); LH rested |
 | A♭ / D♭ RH | 4 / 4 | held, slight tempo nudge |
-| D natural minor | RH 4 | advanced to HT |
-| Arpeggio | "wayyy too easy" (5) | retired one-octave → **seventh arpeggios** |
-| Sevenths | C owned (5), G worked (4) | added **D** (new key) + **hands-together** in C |
-| Progressions | all 5 (loops, even G HT) | retired loops → **12-bar blues in C** (first real form) |
+| D natural minor HT | 4 | held, slight tempo nudge |
+| Sevenths / 7th arpeggios | all 5 + **"too many 7ths"** | **retired entirely** — taste, not difficulty |
+| Pop progressions | the new chord thread | **I–V–vi–IV (C), 50s I–vi–IV–V (C), I–V–vi–IV (G), broken-chord pattern** |
+| 12-bar blues in C | 3 (engaged) | retired for now — it's 7th-heavy (C7/F7/G7); revisit if he misses it |
 
 ---
 
@@ -99,3 +106,37 @@ naming)? Does G♭ hands-*separate* finally come off 3, and is it ready to recom
 seventh arpeggios / HT sevenths / 12-bar blues finally land below 5 (the chord challenge he's
 been asking for), or do I need to go further (rootless voicings, blues in a flat key, a walking
 bass under the blues)? Is D minor HT clean?
+
+### 2026-06-21 — pivot to pop (processed feedback/2026-06-19-aqdg2e.json)
+**Note (a direction signal, not a difficulty one):** *"Too many 7ths. I care about pop culture
+music which rarely has 7ths."* Ratings confirmed it cleanly:
+- Recall landed — `c-recall` 5, `a-harm-recall` 4→5. From-memory play on owned scales is easy
+  now → kept as a light warm-up, not a focus.
+- Black keys: `bb-ht` 4→**5** (owned now), `eb-ht` 4, `ab-rh`/`db-rh` 4, `dm-ht` 4 — the
+  productive middle, all holding. Good continuity backbone.
+- **G♭ regressed.** Breaking it hands-separate didn't help — `gb-rh` went **3→2** and `gb-lh`
+  sat at 3. A 2 is "couldn't do it," so isolating the whole-hand scale was still too much.
+- **All sevenths = 5.** `seventh-arpeggios`, `d-sevenths`, `sevenths-ht` all too easy. Combined
+  with the note, that's a green light to drop them, not advance them. `blues-c` = 3.
+
+**What I changed and why** — two moves:
+1. **Pivoted the chord block from jazz to pop (the headline).** Retired all three jazz sevenths
+   *and* the 12-bar blues (it's C7/F7/G7 — 7th-heavy, against his stated taste). Replaced with
+   the progressions pop is actually built from, all triads: **I–V–vi–IV in C** (the canonical
+   pop loop), the **50s I–vi–IV–V in C** (same chords reordered), **I–V–vi–IV moved to G** (new
+   key, two new chords D/Em), and a **broken-chord ballad pattern** so it sounds like a song,
+   not blocks. Cued with real song titles so he hears the connection to music he knows.
+2. **Shrunk G♭ hard.** Forcing the full scale (even one hand) keeps failing, so I cut it to a
+   **4-note thumb-under drill** — just the crossing that breaks — RH only, very slow (60), and
+   **rested the LH** to reduce the frustration of a 2. Rebuild outward once the tuck is automatic.
+
+Kept scales/minors as continuity with small tempo nudges. ~31 min, 13 exercises, validated clean
+(the two-staff triad progressions and the G♭ drill parse fine). Note: this was a manual run —
+the scheduled routine had stopped, so I ran the daily procedure by hand on 2026-06-21; feedback
+through 2026-06-19 is now folded in.
+
+**Watching for next:** do the pop progressions land in the productive 3–4 (real learning) or
+come back 5 (then push: faster, more keys, RH melody over LH chords, a full song)? Does the
+broken-chord pattern click as "this sounds like a song"? Does the tiny G♭ thumb-under drill
+finally come off the floor (→ rebuild to the full RH scale, then recombine)? Which pop songs
+does he recognize — use that to pick the next progressions/keys.
