@@ -140,3 +140,22 @@ come back 5 (then push: faster, more keys, RH melody over LH chords, a full song
 broken-chord pattern click as "this sounds like a song"? Does the tiny G♭ thumb-under drill
 finally come off the floor (→ rebuild to the full RH scale, then recombine)? Which pop songs
 does he recognize — use that to pick the next progressions/keys.
+
+### 2026-06-22 — no new feedback; consolidation hold on the pop pivot
+Scheduled run found nothing in `feedback/` newer than 2026-06-19 — the pop-pivot session I
+authored 2026-06-21 hasn't been practiced or rated yet. Per the no-feedback rule (and the
+2026-06-16 precedent of holding an unpracticed plan rather than churning), I made this a **light
+consolidation**: kept all 13 exercises and their ids exactly — the pop block is brand-new and
+unrated, so re-rolling ids would fragment the very rating trend I'm waiting on, and the student
+should actually get to play this material before I react to it. Only changes: bumped
+`generatedAt` to 2026-06-22 and reframed the `coachNote` as a deliberate second pass — same set,
+because I need a clean first read on the pop progressions and want him to rate honestly and name
+which songs he recognizes. Validated clean (66 passes, ~31 min). `Last processed:` stays at
+2026-06-19 (nothing new consumed).
+
+**Watching for next:** unchanged from above — I'm still waiting on the first read of the pop
+pivot (productive 3–4 vs too-easy 5), whether the broken-chord pattern clicks as song-like,
+whether the G♭ thumb-under drill comes off the floor, and which pop songs he recognizes. If the
+next scheduled run again finds no feedback, hold again — but if this stretches several days,
+consider that the schedule or the feedback path may be stalled (the 2026-06-21 run was already a
+manual recovery after the routine had stopped).
