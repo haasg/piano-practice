@@ -159,3 +159,29 @@ whether the G♭ thumb-under drill comes off the floor, and which pop songs he r
 next scheduled run again finds no feedback, hold again — but if this stretches several days,
 consider that the schedule or the feedback path may be stalled (the 2026-06-21 run was already a
 manual recovery after the routine had stopped).
+
+### 2026-06-23 — no new feedback (3rd day); second consolidation hold + quiet-student nudge
+Scheduled run again found nothing newer than 2026-06-19. Timeline now: last feedback landed the
+evening of **2026-06-19**; the pop pivot was authored **2026-06-21**, held **2026-06-22**, and is
+still unplayed as of **2026-06-23** — roughly **3.5 days quiet**, the longest gap since the
+student started (feedback had been near-daily: 06-15, 06-16, 06-17, 06-19). The schedule itself is
+healthy — it ran 06-22 and ran again today — so the feedback path on *my* side is fine; the
+simplest read is that **Griffin just hasn't practiced** (life happens). I can't see the app side
+from here, so I can't rule out a broken feedback-submission path, but there's no evidence of one.
+
+Per the no-feedback rule, held again: **kept all 13 exercises and ids exactly** (still waiting on
+the first read of the unrated pop block — churning ids now would fragment the trend). Only changes:
+bumped `generatedAt` to 2026-06-23 and rewrote the `coachNote` to **warmly welcome him back without
+guilt**, since the gap is now real — the session is here whenever he sits down, and I still need an
+honest rating + which songs he recognizes. Validated clean (13 ex, 66 passes, ~31 min).
+`Last processed:` stays at **2026-06-19** (nothing new consumed).
+
+Because the gap has now stretched to several days (the threshold I set myself on 06-22), I sent a
+**gentle phone notification** — not an alarm, just a teacher checking in: the pop session he asked
+for is ready and waiting, no log seen since the 19th, and if that's unexpected he may want to
+confirm the in-app feedback send is working.
+
+**Watching for next:** the same unrated pop-pivot questions as before, plus now: does feedback
+resume at all? If the next run still finds nothing, hold once more but treat a continued silence as
+a stronger signal that either the student is on a break or the feedback submission is broken — and
+keep the notification cadence sparse (don't ping every single day; I've nudged once now).
