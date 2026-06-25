@@ -209,3 +209,30 @@ check-in only after several more days, not daily.
 does the broken-chord pattern feel song-like, does the G♭ thumb-under drill come off the floor,
 which pop songs he recognizes), plus: does feedback resume at all? If the gap keeps stretching, the
 hold stays correct, but weigh a sparse second nudge over re-pinging every day.
+
+### 2026-06-25 — no new feedback (5th day); fourth consolidation hold, no new ping
+Scheduled run again found nothing in `feedback/` newer than 2026-06-19. Timeline: last feedback the
+evening of **2026-06-19**; pop pivot authored **2026-06-21**, held **06-22 / 06-23 / 06-24**, still
+unplayed as of **06-25** — roughly **5.5–6 days quiet**, comfortably the longest gap since Griffin
+started (feedback had been near-daily: 06-15, 06-16, 06-17, 06-19). The schedule is healthy (it's run
+every day); the feedback path on my side is fine. Simplest read is unchanged: he just hasn't sat down
+yet. I still can't see the app side, so a broken feedback-submission path isn't positively ruled out,
+but there's still no evidence of one.
+
+Per the no-feedback rule, held again: **kept all 13 exercises and ids exactly** — the pop block is
+still unrated, and churning ids now would fragment the very first-read trend I'm waiting on. Only
+changes: bumped `generatedAt` to **2026-06-25** and refreshed the `coachNote` in this run's voice
+(same warm, no-guilt welcome-back framing; added a concrete "way in" — recall warm-ups first, then
+spend the real time on the four progressions — so a returning student has an obvious place to start).
+Validated clean (13 ex, 66 passes, ~31 min). `Last processed:` stays at **2026-06-19**.
+
+**Notification decision:** I nudged on **06-23** and held off **06-24**, telling myself to keep the
+cadence sparse — a second check-in only after *several* more days, not daily. It's now two days past
+that nudge with no new information; that's not yet "several days," and re-pinging would be noise. So
+**no notification this run.** The 06-23 nudge stands. If silence reaches roughly a week+ from that
+nudge (say 06-29/06-30), I'll consider one spaced-out second check-in, not before.
+
+**Watching for next:** unchanged — the unrated pop-pivot questions and whether feedback resumes at
+all. Hold stays correct while quiet; keep notifications sparse (next candidate ~06-29+ at the
+earliest), and keep watching for any positive sign the feedback path itself is broken rather than the
+student simply being away.
