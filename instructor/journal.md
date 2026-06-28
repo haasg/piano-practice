@@ -265,6 +265,34 @@ broken-chord pattern feel song-like, does the G♭ thumb-under drill come off th
 recognizes), and whether feedback resumes at all. Hold stays correct while quiet; the first new feedback
 file is the trigger to react. Keep notifications sparse (next candidate ~06-29/06-30).
 
+### 2026-06-28 — no new feedback (8th day); seventh consolidation hold, no new ping
+Scheduled run again found nothing in `feedback/` newer than 2026-06-19. Timeline: last feedback the
+evening of **2026-06-19**; pop pivot authored **2026-06-21**, held **06-22 / 06-23 / 06-24 / 06-25 /
+06-26 / 06-27**, still unplayed as of **06-28** — roughly **8.5–9 days quiet**, by far the longest gap
+since Griffin started (feedback had been near-daily: 06-15, 06-16, 06-17, 06-19). The schedule is healthy
+(it's run every day, including today); the feedback path on my side is fine — `feedback/` still holds
+exactly the four files through 06-19, unchanged. Simplest read is unchanged: he just hasn't sat down yet.
+I still can't see the app side, so a broken feedback-submission path isn't positively ruled out, but
+there's still no positive evidence of one.
+
+Per the no-feedback rule, held again: **kept all 13 exercises and ids exactly** — the pop block is still
+unrated, and churning ids now would fragment the very first-read trend I'm waiting on. Only changes: bumped
+`generatedAt` to **2026-06-28** and refreshed the `coachNote` in this run's voice — same warm, no-guilt
+framing, keeping both the full half-hour path and the ~10-minute "straight to the four progressions"
+version so a returning student always has a low-friction way in. Validated clean (13 ex, 66 passes, ~31 min).
+`Last processed:` stays at **2026-06-19**.
+
+**Notification decision:** I nudged on **06-23** and have held off **06-24 / 06-25 / 06-26 / 06-27**, telling
+myself the next candidate is ~06-29/06-30 (roughly a week from that nudge). Today is 06-28 — five days past
+the nudge, just shy of that threshold, and with no new information re-pinging now would still be noise. So
+**no notification this run.** The 06-23 nudge stands. If the next run (06-29/06-30) still finds silence, that
+hits my week-out threshold and I'll send one spaced-out second check-in then.
+
+**Watching for next:** unchanged — the unrated pop-pivot questions (productive 3–4 vs too-easy 5, does the
+broken-chord pattern feel song-like, does the G♭ thumb-under drill come off the floor, which pop songs he
+recognizes), and whether feedback resumes at all. Hold stays correct while quiet; the first new feedback file
+is the trigger to react. Next notification candidate ~06-29/06-30.
+
 ### 2026-06-26 — no new feedback (6th day); fifth consolidation hold, no new ping
 Scheduled run again found nothing in `feedback/` newer than 2026-06-19. Timeline: last feedback the
 evening of **2026-06-19**; pop pivot authored **2026-06-21**, held **06-22 / 06-23 / 06-24 / 06-25**,
