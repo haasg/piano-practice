@@ -293,6 +293,37 @@ broken-chord pattern feel song-like, does the G♭ thumb-under drill come off th
 recognizes), and whether feedback resumes at all. Hold stays correct while quiet; the first new feedback file
 is the trigger to react. Next notification candidate ~06-29/06-30.
 
+### 2026-06-29 — no new feedback (9th day); eighth consolidation hold + spaced-out second nudge
+Scheduled run again found nothing in `feedback/` newer than 2026-06-19. Timeline: last feedback the
+evening of **2026-06-19**; pop pivot authored **2026-06-21**, held **06-22 → 06-28**, still unplayed as
+of **06-29** — roughly **9.5–10 days quiet**, by far the longest gap since Griffin started (feedback had
+been near-daily: 06-15, 06-16, 06-17, 06-19). The schedule is healthy (it's run every day, including
+today); the feedback path on my side is fine — `feedback/` still holds exactly the four files through
+06-19, unchanged (verified by `ls`). Simplest read is unchanged: he just hasn't sat down yet. I still
+can't see the app side, so a broken feedback-submission path isn't positively ruled out, but there's
+still no positive evidence of one.
+
+Per the no-feedback rule, held again: **kept all 13 exercises and ids exactly** — the pop block is still
+unrated, and churning ids now would fragment the very first-read trend I'm waiting on. Only changes:
+bumped `generatedAt` to **2026-06-29** and refreshed the `coachNote` in this run's voice — same warm,
+no-guilt framing, keeping both the full half-hour path and the ~10-minute "straight to the four
+progressions" version so a returning student always has a low-friction way in. Validated clean (13 ex,
+66 passes, ~31 min). `Last processed:` stays at **2026-06-19**.
+
+**Notification decision:** I nudged once on **06-23** and then deliberately held off every run since
+(06-24 → 06-28), telling myself the next candidate was ~06-29/06-30 — roughly a week out from that first
+nudge. Today is **06-29**, which hits that self-set threshold, and silence has now stretched to ~10 days.
+So this run I sent **one spaced-out second check-in** — same gentle, no-alarm teacher's tone: the pop
+session is still ready, no log seen since the 19th, and if that's unexpected it's worth confirming the
+in-app feedback send is actually working. This is the *second* nudge in ~10 days, not a daily ping — the
+cadence stays sparse. After this I'll go quiet again on notifications unless something changes (new
+feedback, or a much longer silence warranting a final spaced check-in well into July).
+
+**Watching for next:** unchanged — the unrated pop-pivot questions (productive 3–4 vs too-easy 5, does the
+broken-chord pattern feel song-like, does the G♭ thumb-under drill come off the floor, which pop songs he
+recognizes), and whether feedback resumes at all. Hold stays correct while quiet; the first new feedback
+file is the trigger to react. No further notification until new info or a much longer gap.
+
 ### 2026-06-26 — no new feedback (6th day); fifth consolidation hold, no new ping
 Scheduled run again found nothing in `feedback/` newer than 2026-06-19. Timeline: last feedback the
 evening of **2026-06-19**; pop pivot authored **2026-06-21**, held **06-22 / 06-23 / 06-24 / 06-25**,
