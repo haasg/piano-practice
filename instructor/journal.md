@@ -3,16 +3,17 @@
 My evolving model of the student and a dated log of what I changed each run and why.
 I rewrite this file every session. See `instructor/MISSION.md` for how I work.
 
-**Last processed:** 2026-06-19 (feedback/2026-06-19-aqdg2e.json)
+**Last processed:** 2026-06-29 (feedback/2026-06-29-ktvha7.json)
 
 ---
 
 ## Student model
 
 - **Stage:** advancing beginner, moving fast and notably self-aware. Owns C/G major, the
-  natural minors, A harmonic minor, triads/inversions/arpeggios, and now four-chord pop
-  shapes. The frontier is twofold: black-key coordination (hands) **and** recall (naming
-  keys, recalling fingerings without the page) — he flagged the second himself.
+  natural minors, A harmonic minor, B♭/E♭ HT, triads/inversions/arpeggios, and the four-chord
+  pop progressions (all confirmed 5 on the 06-29 read). The frontier has moved: he's ready to
+  play **songs** — melody in one hand over chords in the other — and the explicit, repeated
+  ask is **memorizing fingerings** (he flagged it twice now, latest 06-29).
 - **Goal (sharpened 2026-06-19):** he plays for **pop / pop-culture music**, and told me
   directly it "rarely has 7ths." Steer the harmony curriculum to what pop is built from —
   triads, the common four-chord progressions, song-shaped patterns — not jazz voicings. The
@@ -22,17 +23,21 @@ I rewrite this file every session. See `instructor/MISSION.md` for how I work.
   rarely has 7ths."* All three seventh exercises came back 5 (too easy) — so this is taste,
   not difficulty. Pivoted the whole chord block from jazz ii–V–I sevenths to pop triad
   progressions (I–V–vi–IV, the 50s I–vi–IV–V, same in G, broken-chord ballad pattern).
-- **The key insight (2026-06-17):** *"good muscle memory but need more to remember fingerings
-  and which scale is which."* His hands are **ahead of his memory.** Motor skill is not the
-  bottleneck on owned material — recall and identification are. This reframes the work: strip
-  the printed fingerings on owned scales, add naming/identification, don't just drill motion.
-- **Strengths:** scales are "good practice" (right zone). Owns C/Am/A-harm (all to 5),
-  triads/inversions/one-octave arpeggio/four-chord loops (all 5). Seventh chords in C owned
-  (4→5); transposing sevenths to G worked (held at 4). Self-diagnoses accurately.
-- **Edges to grow:** **G♭ HT is a wall — 3 for three straight sessions** (broke it to
-  hands-separate this run). B♭/E♭ HT steady at 4 (climbing tempo). A♭/D♭ RH at 4. D minor
-  advancing. Recall (fingerings + key identification) is the new deliberate thread. Chords
-  need real difficulty, not just new keys — pushed to seventh arpeggios, HT sevenths, 12-bar blues.
+- **The key insight (2026-06-17, reconfirmed 2026-06-29):** *"good muscle memory but need more
+  to remember fingerings and which scale is which"* → and now *"Scales feel easy once I know the
+  fingerings. Need to memorize those."* His hands are **ahead of his memory.** Motor skill is not
+  the bottleneck on owned material — fingering recall is. This is now a standing thread: as each
+  scale reaches a 5, **pull its printed fingerings** and make him recall them. White-key scales
+  went fingerless first; B♭/E♭ joined the from-memory club on the 06-30 plan.
+- **Strengths:** scales are "good practice" (right zone). Owns C/Am/A-harm recall (all 5),
+  **B♭ HT and E♭ HT now 5** (E♭ climbed 4→5), triads/inversions/arpeggio, and **all four pop
+  triad progressions (06-29 read: all 5)**. The G♭ thumb-tuck drill came off the floor decisively
+  (2 → **5**). Self-diagnoses accurately, every time.
+- **Edges to grow:** **playing songs** (melody-over-chords) is the new frontier — the pop block
+  is too easy as blocked triads, so the 06-30 plan steps it up to RH melody over LH chords + broken
+  chords HT. **G♭** is rebuilding: the tuck is owned, now reassembling the full one-octave RH scale
+  (slow). **A♭/D♭ RH** hold at 4 (the working edge, fingerings still printed). **Fingering memory**
+  is a standing thread (his repeated ask). D minor HT holding (wasn't rated 06-29).
 - **Constraints/preferences:** ~30 min/day, iPad at the piano, rates 1–5 (1 = brutal,
   5 = too easy). Writes thoughtful notes — trust his self-reads, they've been accurate every time.
 
@@ -40,15 +45,14 @@ I rewrite this file every session. See `instructor/MISSION.md` for how I work.
 
 | Thread | State | Next move |
 |---|---|---|
-| Owned scales (C / Am / A-harm) | recall now easy (5/4→5) | kept as light **maintenance warm-up**, fingerings off |
-| B♭ HT | 4→5 (owned) | held one more session to confirm, +tempo; next: pull fingerings |
-| E♭ HT | steady 4 | tempo nudge, fingerings stay |
-| G♭ | **wall, now regressing: HT 3×3, then RH 3→2 hands-separate** | **shrunk to a 4-note thumb-under drill**, slow (60); LH rested |
-| A♭ / D♭ RH | 4 / 4 | held, slight tempo nudge |
-| D natural minor HT | 4 | held, slight tempo nudge |
-| Sevenths / 7th arpeggios | all 5 + **"too many 7ths"** | **retired entirely** — taste, not difficulty |
-| Pop progressions | the new chord thread | **I–V–vi–IV (C), 50s I–vi–IV–V (C), I–V–vi–IV (G), broken-chord pattern** |
-| 12-bar blues in C | 3 (engaged) | retired for now — it's 7th-heavy (C7/F7/G7); revisit if he misses it |
+| Owned scales (C / Am / A-harm) | recall easy (all 5) | light **maintenance warm-up**, fingerings off |
+| B♭ HT | 5 (owned) | **fingerings pulled** → from-memory recall (serves his note) |
+| E♭ HT | 4→5 (owned) | **fingerings pulled** → from-memory recall |
+| G♭ | thumb-tuck drill **2→5** (broke the wall) | **rebuilt to full one-octave RH scale**, slow (66), tuck-anchored; LH still rested |
+| A♭ / D♭ RH | 4 / 4 (working edge) | held + slight tempo nudge, fingerings still printed |
+| D natural minor HT | 4 (not rated 06-29) | held as continuity |
+| Pop progressions (blocked triads) | all 5 — too easy | **retired as blocks → advanced to songs** |
+| **Pop SONGS (melody over chords)** | the new frontier (06-30) | **RH melody + LH chords: I–V–vi–IV (C), 50s I–vi–IV–V (C); broken-chord pattern HT in C and G** |
 
 ---
 
@@ -323,6 +327,52 @@ feedback, or a much longer silence warranting a final spaced check-in well into 
 broken-chord pattern feel song-like, does the G♭ thumb-under drill come off the floor, which pop songs he
 recognizes), and whether feedback resumes at all. Hold stays correct while quiet; the first new feedback
 file is the trigger to react. No further notification until new info or a much longer gap.
+
+### 2026-06-30 — he's back! First read on the pop pivot; advance to songs (processed feedback/2026-06-29-ktvha7.json)
+**Griffin returned after ~10 days quiet and played the full pop-pivot session.** The wait paid off —
+this is exactly the clean first read I was holding for. Note: *"Scales feel easy once I know the
+fingerings. Need to memorize those."* The 06-29 ratings:
+- **All four pop progressions = 5** (`pop-1564-c-ht`, `pop-1645-c-ht`, `pop-1564-g-ht`, `pop-broken-c`).
+  The pop pivot landed and is already too easy as blocked triads → the green light to advance the
+  whole block decisively.
+- **G♭ thumb-tuck drill = 5** — the shrink-it-all-the-way-down move worked (it had been 3→2 hands-
+  separate). The tuck is owned; ready to rebuild outward.
+- **B♭ HT = 5, E♭ HT = 4→5** — both owned now.
+- **A♭ RH = 4, D♭ RH = 4** — the productive working edge, holding.
+- `dm-ht` — **not rated this session** (in the exercise list but no rating returned); treated as no
+  signal, held as continuity.
+- Recall warm-ups (C/Am/A-harm) all 5 — owned, kept light.
+
+**What I changed and why** — three moves, all from the read:
+1. **Advanced pop from chords to SONGS (the headline).** All four progressions at 5 means blocked
+   triads have nothing left to teach. Retired them and stepped up to **melody-over-chords**: a RH
+   melody floating over LH chord roots on the I–V–vi–IV in C (`pop-melody-c`) and on the 50s
+   I–vi–IV–V in C (`pop-1645-melody-c`) — two distinct 8-bar song shapes. Plus grew the broken-chord
+   pattern from RH-only to **hands together** in C (`pop-broken-ht`) and lifted it into **G**
+   (`pop-broken-g`, meeting D/Em as broken chords). This is the leap from "I can play the chords" to
+   "that sounds like a song" — the actual goal (he plays for pop-culture music).
+2. **Rebuilt G♭** (`gb-rh`). The four-note tuck hit 5, so I reassembled the **full one-octave RH
+   scale** around it — same thumb-tuck at C♭ and the top, slow (66), RH only, LH still rested. The
+   long-running G♭ wall is finally coming down by building outward from the one move that broke it.
+3. **Pulled fingerings off B♭ and E♭** (`bb-recall`, `eb-recall`). Direct response to his note —
+   both reached 5, so they graduate to from-memory like the white-key scales: blank page, name the
+   fingering yourself. This makes "memorize the fingerings" an explicit drill, not a hope.
+
+Kept A♭/D♭ RH (still 4, fingerings printed), the three white-key recall warm-ups, and D minor HT as
+continuity. Retired the four blocked pop progressions. ~32 min, 13 exercises, 69 passes, validated
+clean (the two-voice melody-over-chords pieces and the full G♭ scale parse with zero warnings).
+`Last processed:` → **2026-06-29**.
+
+**Notification:** sent one — he's back after a 10-day gap and that's genuinely good news worth a ping
+(it also closes out the two earlier nudges about the silence). Kept it warm and brief.
+
+**Watching for next:** Do the melody-over-chords songs land in the productive 3–4 (real new
+difficulty — two independent hand jobs) or come back 5 (push: faster, add LH broken accompaniment
+under the melody, a full recognizable tune, more keys)? Does the **full G♭ RH scale** hold now that
+it's rebuilt, or does reassembling reintroduce the break (→ shrink again / keep slow / when to
+recombine LH)? Do **B♭/E♭ from memory** stay easy or expose a real fingering-recall gap? Which song
+melodies does he recognize, and is there a specific song he wants to play — that's the lever for the
+next key/progression. And: does the near-daily feedback cadence resume now that he's back?
 
 ### 2026-06-26 — no new feedback (6th day); fifth consolidation hold, no new ping
 Scheduled run again found nothing in `feedback/` newer than 2026-06-19. Timeline: last feedback the

@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-06-29",
-  "coachNote": "Still here whenever you are — same pop block you asked for, no guilt about the gap. The fastest way back in is the four progressions, and ten minutes is plenty: C–G–Am–F is I–V–vi–IV, the most-played loop in pop (\"Let It Be,\" \"Don't Stop Believin'\"); C–Am–F–G is those same four chords reordered into the \"Stand By Me\" feel; then that shape lifted into the key of G; then the broken-chord version that turns the blocks into something that actually sounds like a song. Got the full half hour? Open with the three recall scales — say the name out loud, then play from memory — and keep the G♭ bit tiny: four notes, right hand, dead slow, just the thumb tucking under. Two things back from you and I can plan the next step: an honest 1–5 on each one, and which of these progressions you recognize from songs you already know.",
+  "generatedAt": "2026-06-30",
+  "coachNote": "Great to see you back at the bench — and a really useful log. Every pop progression came back \"too easy,\" so we take the next real step today: turning chords into songs. The headline is a right-hand melody floating over your left-hand chords — that's the leap from \"I can play the chords\" to \"that sounds like a song.\" Two of those (in C, on the I–V–vi–IV and the 50s loop), plus the broken-chord pattern grown to both hands and lifted into G. Big win on the G♭ front: you nailed the four-note thumb tuck (a 5!), so we rebuild the whole one-octave G♭ scale right around it — same tuck, dead slow, now end to end. And I heard your note — \"scales feel easy once I know the fingerings, need to memorize those.\" So B♭ and E♭ join the from-memory club: no fingerings on the page, you name them yourself. A♭ and D♭ keep their numbers a little longer. Give me an honest 1–5 on each, and tell me which of these melodies you recognize — or a song you'd love to actually play next.",
   "exercises": [
     {
-      "id": "2026-06-21-c-recall",
+      "id": "2026-06-30-c-recall",
       "label": "C major — hands together, from memory",
       "block": "Recall warm-up · no fingerings on the staff",
       "abc": "X:1\nM:4/4\nL:1/4\nK:C\nC D E F | G A B c |]",
@@ -14,7 +14,7 @@
       "fingering": "From memory — RH 1 2 3 1 2 3 4 5 · LH 5 4 3 2 1 3 2 1 (only if truly stuck)"
     },
     {
-      "id": "2026-06-21-am-recall",
+      "id": "2026-06-30-am-recall",
       "label": "A natural minor — hands together, from memory",
       "block": "Recall warm-up · no fingerings on the staff",
       "abc": "X:1\nM:4/4\nL:1/4\nK:Am\nA, B, C D | E F G A |]",
@@ -25,7 +25,7 @@
       "fingering": "From memory — RH 1 2 3 1 2 3 4 5 · LH 5 4 3 2 1 3 2 1 (only if stuck)"
     },
     {
-      "id": "2026-06-21-a-harm-recall",
+      "id": "2026-06-30-a-harm-recall",
       "label": "A harmonic minor — hands together, from memory",
       "block": "Recall warm-up · no fingerings on the staff",
       "abc": "X:1\nM:4/4\nL:1/4\nK:Am\nA, B, C D | E F ^G A |]",
@@ -36,114 +36,114 @@
       "fingering": "From memory — the only black key is the G♯ near the top"
     },
     {
-      "id": "2026-06-21-bb-ht",
-      "label": "B♭ major — hands together",
-      "block": "Black-key scales · the working edge",
-      "abc": "X:1\nM:4/4\nL:1/4\nK:Bb\n\"^2\"B, \"^1\"C \"^2\"D \"^3\"E | \"^1\"F \"^2\"G \"^3\"A \"^4\"B |]",
+      "id": "2026-06-30-bb-recall",
+      "label": "B♭ major — hands together, from memory",
+      "block": "Black-key scales · memorize the fingering",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Bb\nB, C D E | F G A B |]",
       "hand": "HT",
       "reps": 5,
       "tempo": 92,
-      "cue": "You hit a 5 last time — let's confirm it's really owned. One notch faster, and watch the 4th finger land clean on the black key.",
-      "fingering": "LH: 3 2 1 4 3 2 1 2   (RH printed above the staff)"
+      "cue": "You owned this at a 5 — so now, your note: memorize the fingering. Page is blank. Picture where the 4th finger lands on the black key, then play it from memory. Peek only if you truly stall.",
+      "fingering": "From memory — RH 2 1 2 3 1 2 3 4 · LH 3 2 1 4 3 2 1 2 (peek only if stuck)"
     },
     {
-      "id": "2026-06-21-eb-ht",
-      "label": "E♭ major — hands together",
-      "block": "Black-key scales · the working edge",
-      "abc": "X:1\nM:4/4\nL:1/4\nK:Eb\n\"^2\"E \"^1\"F \"^2\"G \"^3\"A | \"^4\"B \"^1\"c \"^2\"d \"^3\"e |]",
+      "id": "2026-06-30-eb-recall",
+      "label": "E♭ major — hands together, from memory",
+      "block": "Black-key scales · memorize the fingering",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Eb\nE F G A | B c d e |]",
       "hand": "HT",
-      "reps": 6,
+      "reps": 5,
       "tempo": 92,
-      "cue": "Steady at a 4 — push the tempo a touch. Thumbs find the white keys, long fingers stay home on the black.",
-      "fingering": "LH: 3 2 1 4 3 2 1 2   (RH printed above the staff)"
+      "cue": "Climbed to a 5 last time — so it graduates to from-memory too. Three flats (B♭ E♭ A♭). Thumbs find the white keys, long fingers live on the black. Name your fingering before you start.",
+      "fingering": "From memory — RH 2 1 2 3 4 1 2 3 · LH 3 2 1 4 3 2 1 2 (peek only if stuck)"
     },
     {
-      "id": "2026-06-21-ab-rh",
+      "id": "2026-06-30-ab-rh",
       "label": "A♭ major — right hand",
       "block": "Black-key scales · the working edge",
       "abc": "X:1\nM:4/4\nL:1/4\nK:Ab\n\"^3\"A, \"^4\"B, \"^1\"C \"^2\"D | \"^3\"E \"^1\"F \"^2\"G \"^3\"A |]",
       "hand": "RH",
-      "reps": 5,
-      "tempo": 84,
-      "cue": "Holding at a 4 — keep it crisp. Thumb on C and F; finger 3 starts you.",
+      "reps": 6,
+      "tempo": 86,
+      "cue": "Holding at a 4 — keep it crisp and nudge the tempo. Thumb on C and F; finger 3 starts you. Fingerings stay printed here while it settles.",
       "fingering": "RH: 3 4 1 2 3 1 2 3"
     },
     {
-      "id": "2026-06-21-db-rh",
+      "id": "2026-06-30-db-rh",
       "label": "D♭ major — right hand",
       "block": "Black-key scales · the working edge",
       "abc": "X:1\nM:4/4\nL:1/4\nK:Db\n\"^2\"D \"^3\"E \"^1\"F \"^2\"G | \"^3\"A \"^4\"B \"^1\"C \"^2\"d |]",
       "hand": "RH",
-      "reps": 5,
-      "tempo": 82,
-      "cue": "Five flats, holding at 4 — a touch faster. Thumbs on the two white keys (F and C); everything else is black.",
+      "reps": 6,
+      "tempo": 84,
+      "cue": "Five flats, holding at 4 — a touch faster. Thumbs on the two white keys (F and C); everything else is black. Numbers stay on the page for now.",
       "fingering": "RH: 2 3 1 2 3 4 1 2"
     },
     {
-      "id": "2026-06-21-gb-thumb-drill",
-      "label": "G♭ major — thumb-under drill (the spot that breaks)",
+      "id": "2026-06-30-gb-rh",
+      "label": "G♭ major — full scale, right hand (rebuilt from the tuck)",
       "block": "Black-key scales · the working edge",
-      "abc": "X:1\nM:4/4\nL:1/4\nK:Gb\n\"^2\"G \"^3\"A \"^4\"B \"^1\"c | \"^1\"c \"^4\"B \"^3\"A \"^2\"G |]",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:Gb\n\"^2\"G \"^3\"A \"^4\"B \"^1\"c | \"^2\"d \"^3\"e \"^4\"f \"^1\"g |]",
       "hand": "RH",
       "reps": 8,
-      "tempo": 60,
-      "cue": "Taking it apart hands-separate slipped to a 2 — so we shrink it all the way down. Just four notes, right hand only, very slow: practice the thumb tucking under to land on that white key, up and back. Get THIS automatic and the rest of the scale follows. Left hand rests today.",
-      "fingering": "RH up: 2 3 4 1 (thumb under) · back: 1 4 3 2"
+      "tempo": 66,
+      "cue": "Here's the payoff — you nailed the thumb-tuck drill (a 5!). Now we run the whole one-octave scale around it. The tuck is the same move you already own: after the 4th finger on B♭, thumb slides under to C♭, and again at the top. Slow and even, right hand only.",
+      "fingering": "RH: 2 3 4 1 2 3 4 1 — the two thumb-tucks (at c and the top g) are the spots you just mastered"
     },
     {
-      "id": "2026-06-21-dm-ht",
+      "id": "2026-06-30-dm-ht",
       "label": "D natural minor — hands together",
       "block": "Minor scales · advancing",
       "abc": "X:1\nM:4/4\nL:1/4\nK:Dm\n\"^1\"D \"^2\"E \"^3\"F \"^1\"G | \"^2\"A \"^3\"B \"^4\"C \"^5\"d |]",
       "hand": "HT",
-      "reps": 5,
+      "reps": 6,
       "tempo": 84,
-      "cue": "Productive at a 4 — hold it together, nudge the tempo. One flat (B♭), same finger pattern as C in a darker key.",
+      "cue": "Holding it steady — one flat (B♭), same finger pattern as C major in a darker key. Keep both hands locked together and even.",
       "fingering": "LH: 5 4 3 2 1 3 2 1   (RH printed above the staff)"
     },
     {
-      "id": "2026-06-21-pop-1564-c-ht",
-      "label": "I–V–vi–IV in C — the pop progression (hands together)",
-      "block": "Pop progressions · triads, no 7ths",
-      "abc": "X:1\nM:4/4\nL:1/1\nK:C\nV:1 clef=treble\nV:2 clef=bass\n[V:1] \"C\"[CEG] | \"G\"[GBd] | \"Am\"[Ace] | \"F\"[FAc] |]\n[V:2] C, | G, | A, | F, |]",
+      "id": "2026-06-30-pop-melody-c",
+      "label": "I–V–vi–IV in C — a song: melody over chords",
+      "block": "Pop songs · melody in the right hand, chords in the left",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:C\nV:1 clef=treble\nV:2 clef=bass\n[V:1] \"C\"E2 G2 | \"G\"D2 G2 | \"Am\"E2 A2 | \"F\"F2 A2 | \"C\"c2 G2 | \"G\"B2 G2 | \"Am\"A2 c2 | \"F\"c4 |]\n[V:2] C,4 | G,4 | A,4 | F,4 | C,4 | G,4 | A,4 | F,4 |]",
       "hand": "HT",
       "reps": 6,
-      "tempo": 80,
-      "cue": "This is the one — C–G–Am–F, the most-played progression in pop. \"Let It Be,\" \"Don't Stop Believin',\" \"Someone Like You,\" hundreds more. Four plain triads, no sevenths. Right hand plays the chord, left hand names the root. Name each chord before you play it.",
-      "fingering": "RH 1 3 5 on each triad · LH single root underneath"
+      "tempo": 76,
+      "cue": "The big step: your chords were too easy, so now you play a SONG. Same C–G–Am–F you own — but the left hand holds the root while the right hand sings a melody on top. This is what playing a song actually is. Left hand steady, right hand smooth and singing. Take it slow the first few passes.",
+      "fingering": "LH: single root, finger 5, held each bar · RH: melody, mostly 1–3–5 shapes"
     },
     {
-      "id": "2026-06-21-pop-1645-c-ht",
-      "label": "I–vi–IV–V in C — the \"50s\" progression (hands together)",
-      "block": "Pop progressions · triads, no 7ths",
-      "abc": "X:1\nM:4/4\nL:1/1\nK:C\nV:1 clef=treble\nV:2 clef=bass\n[V:1] \"C\"[CEG] | \"Am\"[Ace] | \"F\"[FAc] | \"G\"[GBd] |]\n[V:2] C, | A, | F, | G, |]",
+      "id": "2026-06-30-pop-broken-ht",
+      "label": "Broken-chord pop pattern — I–V–vi–IV in C, hands together",
+      "block": "Pop songs · melody in the right hand, chords in the left",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:C\nV:1 clef=treble\nV:2 clef=bass\n[V:1] \"C\"C E G E | \"G\"G B d B | \"Am\"A c e c | \"F\"F A c A |]\n[V:2] C,4 | G,4 | A,4 | F,4 |]",
       "hand": "HT",
-      "reps": 6,
-      "tempo": 80,
-      "cue": "Same four triads, new order — C–Am–F–G, the \"Stand By Me\" / \"Earth Angel\" sound. Notice how reordering the same chords changes the whole feeling. Hands together, name them as you go.",
-      "fingering": "RH 1 3 5 on each triad · LH single root underneath"
-    },
-    {
-      "id": "2026-06-21-pop-1564-g-ht",
-      "label": "I–V–vi–IV in G — the same shape, new key (hands together)",
-      "block": "Pop progressions · triads, no 7ths",
-      "abc": "X:1\nM:4/4\nL:1/1\nK:G\nV:1 clef=treble\nV:2 clef=bass\n[V:1] \"G\"[GBd] | \"D\"[DFA] | \"Em\"[EGB] | \"C\"[CEG] |]\n[V:2] G, | D, | E, | C, |]",
-      "hand": "HT",
-      "reps": 5,
-      "tempo": 78,
-      "cue": "The same I–V–vi–IV moved into G — a favorite key in pop and on guitar. Two new chords to meet: D major and E minor. The key signature hands you the F♯ automatically, so D plays as D–F♯–A.",
-      "fingering": "RH 1 3 5 on each triad · LH single root underneath"
-    },
-    {
-      "id": "2026-06-21-pop-broken-c",
-      "label": "Broken-chord pop pattern — I–V–vi–IV in C (right hand)",
-      "block": "Pop progressions · triads, no 7ths",
-      "abc": "X:1\nM:4/4\nL:1/4\nK:C\n\"C\"C E G E | \"G\"G B d B | \"Am\"A c e c | \"F\"F A c A |]",
-      "hand": "RH",
       "reps": 6,
       "tempo": 84,
-      "cue": "Now make it sound like a song. Same C–G–Am–F, but instead of blocking each chord, roll it — bottom, middle, top, middle. This broken-chord pattern is the backbone of a hundred pop ballads. Keep it smooth and even.",
-      "fingering": "RH 1 3 5 3 on each chord"
+      "cue": "The broken-chord roll you had at a 5 — now grown to both hands. Right hand rolls the chord (bottom–middle–top–middle), left hand anchors the root underneath. This is the engine of a hundred pop ballads. Keep the roll smooth and the left hand quiet and steady.",
+      "fingering": "RH 1 3 5 3 on each chord · LH single root, finger 5"
+    },
+    {
+      "id": "2026-06-30-pop-broken-g",
+      "label": "Broken-chord pop pattern — I–V–vi–IV in G, hands together",
+      "block": "Pop songs · melody in the right hand, chords in the left",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:G\nV:1 clef=treble\nV:2 clef=bass\n[V:1] \"G\"G B d B | \"D\"D F A F | \"Em\"E G B G | \"C\"C E G E |]\n[V:2] G,4 | D,4 | E,4 | C,4 |]",
+      "hand": "HT",
+      "reps": 6,
+      "tempo": 80,
+      "cue": "Same rolling pattern, lifted into G — a favorite pop and guitar key. The key signature hands you the F♯, so D major rolls as D–F♯–A. Meet D and Em as broken chords now, hands together. Smooth and even.",
+      "fingering": "RH 1 3 5 3 on each chord · LH single root, finger 5"
+    },
+    {
+      "id": "2026-06-30-pop-1645-melody-c",
+      "label": "I–vi–IV–V in C — the \"50s\" loop as a song: melody over chords",
+      "block": "Pop songs · melody in the right hand, chords in the left",
+      "abc": "X:1\nM:4/4\nL:1/4\nK:C\nV:1 clef=treble\nV:2 clef=bass\n[V:1] \"C\"G2 E2 | \"Am\"A2 c2 | \"F\"c2 A2 | \"G\"d2 B2 | \"C\"E2 G2 | \"Am\"c2 A2 | \"F\"A2 F2 | \"G\"B2 G2 |]\n[V:2] C,4 | A,4 | F,4 | G,4 | C,4 | A,4 | F,4 | G,4 |]",
+      "hand": "HT",
+      "reps": 6,
+      "tempo": 76,
+      "cue": "A second song shape — the \"Stand By Me\" loop (C–Am–F–G), now with a melody on top. Same idea: left hand holds the root, right hand sings. Notice how this loop feels different from the first one even with nearly the same chords. Slow and singing.",
+      "fingering": "LH: single root, finger 5, held each bar · RH: melody, mostly 1–3–5 shapes"
     }
   ]
 }
